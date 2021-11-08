@@ -93,6 +93,9 @@ session_start();
         if (isset($_GET["ruta"])) {
             if (
                 $_GET["ruta"] == "dashboard" ||
+                $_GET["ruta"] == "reporte-tipo-consulta" ||
+                $_GET["ruta"] == "reporte-tipo-diagnostico" ||
+                $_GET["ruta"] == "reporte-tipo-medicamento" ||
                 $_GET["ruta"] == "signout"
             ) {
                 include "pages/" . $_GET["ruta"] . ".php";
@@ -111,6 +114,9 @@ session_start();
     <!-- Scripts JS Propios -->
     <script type="text/javascript" src="public/js/main.js"></script>
     <script type="text/javascript" src="public/js/dashboard.js"></script>
+    <script type="text/javascript" src="public/js/reporte-tipo-consulta.js"></script>
+    <script type="text/javascript" src="public/js/reporte-tipo-diagnostico.js"></script>
+    <script type="text/javascript" src="public/js/reporte-tipo-medico.js"></script>
     <script type="text/javascript" src="public/js/signin.js"></script>
     <!-- Scripts JS Propios -->
 </body>
