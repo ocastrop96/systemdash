@@ -15,6 +15,10 @@
         </div>
     </section>
     <section class="content">
+        <?php
+        $reporte = ReportesModelo::mdlListarDiagnosxMeses('2021-01-01','2021-08-31',10716,2,0,0,0);
+        var_dump($reporte);
+        ?>
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -74,7 +78,7 @@
                         <div class="form-group">
                             <label>Selecciona Especialidad:</label>
                             <div class="input-group">
-                                <select class="form-control" name="dshEspecialidad" id="dshEspecialidad">
+                                <select class="form-control" name="dshEspecialidad2" id="dshEspecialidad2">
                                     <option value="0">Seleccione Tipo. Ingreso</option>
                                 </select>
                             </div>
@@ -124,8 +128,8 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="chart rj1">
-                                <canvas id="graphDash1" width="350" height="350"></canvas>
+                            <div class="chart rd1">
+                                <canvas id="graphDashD1" width="350" height="350"></canvas>
                             </div>
                         </div>
                     </div>
@@ -143,8 +147,8 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="card-body rj2">
-                            <canvas id="graphDash2" width="350" height="350"></canvas>
+                        <div class="card-body rd2">
+                            <canvas id="graphDashD2" width="350" height="350"></canvas>
                         </div>
                     </div>
                 </div>

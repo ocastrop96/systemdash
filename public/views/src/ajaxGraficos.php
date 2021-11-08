@@ -138,7 +138,7 @@ class AjaxGraficos
 
         $stmt = ConexionConsulta::conectar()->prepare("SELECT
         Medicos.IdMedico,
-        UPPER(CONCAT(Empleados.ApellidoPaterno,' ',Empleados.ApellidoMaterno,' ',Empleados.Nombres)) AS medicoDato
+        UPPER(Empleados.ApellidoPaterno+' '+Empleados.ApellidoMaterno+' '+Empleados.Nombres) AS medicoDato
     FROM
         dbo.Medicos
         INNER JOIN
@@ -153,6 +153,29 @@ class AjaxGraficos
             $data[] = array("id" => $row['IdMedico'], "text" =>  $row['medicoDato']);
         }
         echo json_encode($data);
+    }
+
+    // Graficos de Diagnosticos
+    public $inicioD;
+    public $finD;
+    public $diagnosticoD;
+    public $tipoIngD;
+    public $especialidadD;
+    public $servicioD;
+    public $medicoD;
+
+    public function graficoDiagnosticoxMes()
+    {
+        // $inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico
+        $inicio = $this->inicioD;
+        $fin = $this->finD;
+        $diagnostico = $this->diagnosticoD;
+        $tipoIngreso = $this->tipoIngD;
+        $especialidad = $this->especialidadD;
+        $servicio = $this->servicioD;
+        $medico = $this->medicoD;
+        $respuesta = ReportesControlador::ctrListarDiagnosticoxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico);
+        echo json_encode($respuesta);
     }
 }
 if (isset($_POST["searchTerm"])) {
@@ -194,21 +217,29 @@ if (isset($_POST["searchTerm2"])) {
     $list5->cie10Desc = $_POST["searchTerm2"];
     $list5->ajaxBuscarDiagnostico();
 }
-
 if (isset($_POST["tipo"])) {
     $list6 = new AjaxGraficos();
     $list6->tipo = $_POST["tipo"];
     $list6->ajaxListarEspecialxTipo();
 }
-
 if (isset($_POST["tipoE"])) {
     $list7 = new AjaxGraficos();
     $list7->tipoE = $_POST["tipoE"];
     $list7->ajaxListarServicioxEsp();
 }
-
 if (isset($_POST["searchTerm3"])) {
     $list8 = new AjaxGraficos();
     $list8->datosMed = $_POST["searchTerm3"];
     $list8->ajaxBuscarMedico();
+}
+if (isset($_POST["dashD1"])) {
+    $list9 = new AjaxGraficos();
+    $list9->inicioD = $_POST["inicioD"];
+    $list9->finD = $_POST["finD"];
+    $list9->diagnosticoD = $_POST["diagnosticoD"];
+    $list9->tipoIngD = $_POST["tipoIngD"];
+    $list9->especialidadD = $_POST["especialidadD"];
+    $list9->servicioD = $_POST["servicioD"];
+    $list9->medicoD = $_POST["medicoD"];
+    $list9->graficoDiagnosticoxMes();
 }

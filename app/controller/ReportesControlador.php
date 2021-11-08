@@ -46,4 +46,10 @@ class ReportesControlador
         $rptListGrafEspeci = ReportesModelo::mdlListarIAFASD($inicio, $fin, $especialidad, $iafa, $doc);
         return $rptListGrafEspeci;
     }
+
+    static public function ctrListarDiagnosticoxMeses($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico)
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarDiagnosxMeses($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico);
+        return $rptListGrafEspeci;
+    }
 }

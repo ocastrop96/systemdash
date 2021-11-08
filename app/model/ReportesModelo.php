@@ -116,4 +116,19 @@ class ReportesModelo
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    static public function mdlListarDiagnosxMeses($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico)
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoDiagnostico_Meses @fechaini = :fechaini, @fechafin = :fechafin , @IdTipoSErvicio = :IdTipoSErvicio, @IdEspecialidad = :IdEspecialidad, @IdServicio = :IdServicio, @IdDiagnsotico = :IdDiagnsotico, @IdMedico = :IdMedico");
+
+        $stmt->bindParam(":IdTipoSErvicio", $tipoIngreso, PDO::PARAM_INT);
+        $stmt->bindParam(":IdEspecialidad", $especialidad, PDO::PARAM_INT);
+        $stmt->bindParam(":IdServicio", $servicio, PDO::PARAM_INT);
+        $stmt->bindParam(":IdDiagnsotico", $diagnostico, PDO::PARAM_INT);
+        $stmt->bindParam(":IdMedico", $medico, PDO::PARAM_INT);
+        $stmt->bindParam(":fechaini", $inicio, PDO::PARAM_STR);
+        $stmt->bindParam(":fechafin", $fin, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

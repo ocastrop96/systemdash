@@ -3,7 +3,7 @@
 // //     color: '#000000'
 // // });
 // // parametrosMeses()
-// CargarAtencionesxMes($("#rango-dsh2").attr("inicio"), $("#rango-dsh2").attr("fin"), 0, 0, '');
+CargarDiagnosticoxMes($("#rango-dsh2").attr("inicio"), $("#rango-dsh2").attr("fin"), 0, 0, 0, 0, 0);
 // CargarAtencionesxEspecialidad($("#rango-dsh2").attr("inicio"), $("#rango-dsh2").attr("fin"), 0, 0, '');
 // CargarAtencionesxIAFAS($("#rango-dsh2").attr("inicio"), $("#rango-dsh2").attr("fin"), 0, 0, '');
 
@@ -54,470 +54,212 @@ $("input[name='rango-dsh2']").daterangepicker({
 }, function (start, end) {
     let inicio = start.format('YYYY-MM-DD');
     let fin = end.format('YYYY-MM-DD');
-    // let especialidad = $("#dshEspecialidad").val();
-    // let iafa = $("#dshIAFA").val();
-    // let ndoc = $("#pacienteQX").val();
+    let diagnostico = $("#diagnosticoQX").val();
+    let tipoIngreso = $("#dshTipIng").val();
+    let especialidad = $("#dshEspecialidad2").val();
+    let servicio = $("#dshServicio").val();
+    let medico = $("#medicoQX").val();
 
-
+    CargarDiagnosticoxMes(inicio, fin, diagnostico, tipoIngreso, especialidad, servicio, medico)
     // CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     // CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     // CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
 
 });
-// $("#dshEspecialidad").on("change", function () {
-//     let inicio = $("#rango-dsh").attr("inicio");
-//     let fin = $("#rango-dsh").attr("fin");
-//     let especialidad = $(this).val();
-//     let iafa = $("#dshIAFA").val();
-//     let ndoc = $("#pacienteQX").val();
-//     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-//     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-//     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+$("#diagnosticoQX").on("change", function () {
+    let inicio = $("#rango-dsh2").attr("inicio");
+    let fin = $("#rango-dsh2").attr("fin");
+    let diagnostico = $(this).val();
+    let tipoIngreso = $("#dshTipIng").val();
+    let especialidad = $("#dshEspecialidad2").val();
+    let servicio = $("#dshServicio").val();
+    let medico = $("#medicoQX").val();
+    CargarDiagnosticoxMes(inicio, fin, diagnostico, tipoIngreso, especialidad, servicio, medico)
 
+});
+$("#dshTipIng").on("change", function () {
+    let tipoIngreso = $(this).val();
+    let inicio = $("#rango-dsh2").attr("inicio");
+    let fin = $("#rango-dsh2").attr("fin");
+    let diagnostico = $("#diagnosticoQX").val();
+    let especialidad = $("#dshEspecialidad2").val();
+    let servicio = $("#dshServicio").val();
+    let medico = $("#medicoQX").val();
+    console.log(inicio, fin, diagnostico, tipoIngreso, especialidad, servicio, medico);
+    // CargarDiagnosticoxMes(inicio, fin, diagnostico, tipoIngreso, especialidad, servicio, medico)
 
-// });
+});
+function CargarDiagnosticoxMes(inicioD, finD, diagnosticoD, tipoIngD, especialidadD, servicioD, medicoD) {
+    var valida3 = 1;
+    var datos = new FormData();
 
-// $("#dshIAFA").on("change", function () {
-//     let inicio = $("#rango-dsh").attr("inicio");
-//     let fin = $("#rango-dsh").attr("fin");
-//     let especialidad = $("#dshEspecialidad").val();
-//     let iafa = $(this).val();
-//     let ndoc = $("#pacienteQX").val();
-//     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-//     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-//     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    datos.append("dashD1", valida3);
 
+    datos.append("inicioD", inicioD);
+    datos.append("finD", finD);
+    datos.append("diagnosticoD", diagnosticoD);
+    datos.append("tipoIngD", tipoIngD);
+    datos.append("especialidadD", especialidadD);
+    datos.append("servicioD", servicioD);
+    datos.append("medicoD", medicoD);
 
-// });
+    $.ajax({
+        url: "public/views/src/ajaxGraficos.php",
+        method: "POST",
+        cache: false,
+        data: datos,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            alert(respuesta);
+            if (respuesta.length > 0) {
+                var mes = [];
+                var contador = [];
+                var colores = [];
+                for (var i = 0; i < respuesta.length; i++) {
+                    contador.push(respuesta[i][0]);
+                    mes.push(respuesta[i][1]);
+                    colores.push(colorRGB());
+                }
 
-// $("#pacienteQX").on("change", function () {
-//     let inicio = $("#rango-dsh").attr("inicio");
-//     let fin = $("#rango-dsh").attr("fin");
-//     let especialidad = $("#dshEspecialidad").val();
-//     let iafa = $("#dshIAFA").val();
-//     let ndoc = $(this).val();
-//     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-//     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-//     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+                $("canvas#graphDashD1").remove();
+                $("div.rd1").append('<canvas id="graphDashD1" width="350" height="350"></canvas>');
+                var ctx2 = document.getElementById("graphDashD1").getContext("2d");
+                var salesGraphChartData = {
+                    labels: mes,
+                    datasets: [
+                        {
+                            label: '# de Frecuencia',
+                            backgroundColor: colores,
+                            borderColor: colores,
+                            borderWidth: 1,
+                            data: contador
+                        }
+                    ]
+                }
 
-// });
-// function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
-//     var valida = 1;
-//     var datos = new FormData();
+                var salesGraphChartOptions = {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontColor: colores
+                            },
+                            gridLines: {
+                                display: false,
+                                color: '#000',
+                                drawBorder: false
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                stepSize: 50,
+                                fontColor: '#000'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: '#AFAFAF',
+                                drawBorder: false
+                            }
+                        }]
+                    },
+                    plugins: {
+                        datalabels: {
+                            color: '#2A2A2A',
+                            labels: {
+                                title: {
+                                    font: {
+                                        weight: 'bolder'
+                                    }
+                                },
+                                value: {
+                                    color: 'green'
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Diagnóstico x Meses',
+                            padding: {
+                                top: 0,
+                                bottom: 0
+                            }
+                        }
 
-//     datos.append("dash1", valida);
-//     datos.append("inicio", Inic);
-//     datos.append("fin", Fin);
-//     datos.append("especialidad", Espec);
-//     datos.append("iafa", FF);
-//     datos.append("doc", NDoc);
-//     $.ajax({
-//         url: "public/views/src/ajaxGraficos.php",
-//         method: "POST",
-//         cache: false,
-//         data: datos,
-//         contentType: false,
-//         processData: false,
-//         dataType: "json",
-//         success: function (respuesta) {
-//             if (respuesta.length > 0) {
-//                 var mes = [];
-//                 var contador = [];
-//                 var colores = [];
-//                 for (var i = 0; i < respuesta.length; i++) {
-//                     contador.push(respuesta[i][0]);
-//                     mes.push(respuesta[i][1]);
-//                     colores.push(colorRGB());
-//                 }
+                    }
+                }
+                var salesGraphChart = new Chart(ctx2, {
+                    type: 'bar',
+                    data: salesGraphChartData,
+                    options: salesGraphChartOptions
+                });
+            }
+            else {
+                $("canvas#graphDashD1").remove();
+                $("div.rd1").append('<canvas id="graphDashD1" width="350" height="350"></canvas>');
+                var ctx2 = document.getElementById("graphDashD1").getContext("2d");
+                var salesGraphChartData = {
+                    labels: ['SIN DATOS'],
+                    datasets: [
+                        {
+                            label: '# de Frecuencia',
+                            backgroundColor: colores,
+                            borderColor: colores,
+                            borderWidth: 1,
+                            data: [0]
+                        }
+                    ]
+                }
 
-//                 $("canvas#graphDash1").remove();
-//                 $("div.rj1").append('<canvas id="graphDash1" width="400" height="400"></canvas>');
-//                 var ctx2 = document.getElementById("graphDash1").getContext("2d");
-//                 var salesGraphChartData = {
-//                     labels: mes,
-//                     datasets: [
-//                         {
-//                             label: '# de Atenciones',
-//                             backgroundColor: colores,
-//                             borderColor: colores,
-//                             borderWidth: 1,
-//                             data: contador
-//                         }
-//                     ]
-//                 }
+                var salesGraphChartOptions = {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontColor: colores
+                            },
+                            gridLines: {
+                                display: false,
+                                color: '#000',
+                                drawBorder: false
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                stepSize: 100,
+                                fontColor: '#000'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: '#AFAFAF',
+                                drawBorder: false
+                            }
+                        }]
+                    },
+                    title: {
+                        display: true,
+                        text: 'Diagnóstico x Meses'
+                    }
+                }
+                var salesGraphChart = new Chart(ctx2, {
+                    type: 'bar',
+                    data: salesGraphChartData,
+                    options: salesGraphChartOptions
+                });
+            }
+        },
+    });
+}
 
-//                 var salesGraphChartOptions = {
-//                     maintainAspectRatio: false,
-//                     responsive: true,
-//                     legend: {
-//                         display: false
-//                     },
-//                     scales: {
-//                         xAxes: [{
-//                             ticks: {
-//                                 fontColor: colores
-//                             },
-//                             gridLines: {
-//                                 display: false,
-//                                 color: '#000',
-//                                 drawBorder: false
-//                             }
-//                         }],
-//                         yAxes: [{
-//                             ticks: {
-//                                 stepSize: 50,
-//                                 fontColor: '#000'
-//                             },
-//                             gridLines: {
-//                                 display: true,
-//                                 color: '#AFAFAF',
-//                                 drawBorder: false
-//                             }
-//                         }]
-//                     },
-//                     plugins: {
-//                         datalabels: {
-//                             color: '#2A2A2A',
-//                             labels: {
-//                                 title: {
-//                                     font: {
-//                                         weight: 'bolder'
-//                                     }
-//                                 },
-//                                 value: {
-//                                     color: 'green'
-//                                 }
-//                             }
-//                         },
-//                         title: {
-//                             display: true,
-//                             text: 'Atenciones por Mes',
-//                             padding: {
-//                                 top: 0,
-//                                 bottom: 0
-//                             }
-//                         }
-
-//                     }
-//                 }
-//                 var salesGraphChart = new Chart(ctx2, {
-//                     type: 'bar',
-//                     data: salesGraphChartData,
-//                     options: salesGraphChartOptions
-//                 });
-//             }
-//             else {
-//                 $("canvas#graphDash1").remove();
-//                 $("div.rj1").append('<canvas id="graphDash1" width="400" height="400"></canvas>');
-//                 var ctx2 = document.getElementById("graphDash1").getContext("2d");
-//                 var salesGraphChartData = {
-//                     labels: ['SIN DATOS'],
-//                     datasets: [
-//                         {
-//                             label: '# de Atenciones',
-//                             backgroundColor: colores,
-//                             borderColor: colores,
-//                             borderWidth: 1,
-//                             data: [0]
-//                         }
-//                     ]
-//                 }
-
-//                 var salesGraphChartOptions = {
-//                     maintainAspectRatio: false,
-//                     responsive: true,
-//                     legend: {
-//                         display: false
-//                     },
-//                     scales: {
-//                         xAxes: [{
-//                             ticks: {
-//                                 fontColor: colores
-//                             },
-//                             gridLines: {
-//                                 display: false,
-//                                 color: '#000',
-//                                 drawBorder: false
-//                             }
-//                         }],
-//                         yAxes: [{
-//                             ticks: {
-//                                 stepSize: 100,
-//                                 fontColor: '#000'
-//                             },
-//                             gridLines: {
-//                                 display: true,
-//                                 color: '#AFAFAF',
-//                                 drawBorder: false
-//                             }
-//                         }]
-//                     },
-//                     title: {
-//                         display: true,
-//                         text: 'Atenciones x Mes'
-//                     }
-//                 }
-//                 var salesGraphChart = new Chart(ctx2, {
-//                     type: 'bar',
-//                     data: salesGraphChartData,
-//                     options: salesGraphChartOptions
-//                 });
-//             }
-//         },
-//     });
-// }
-
-// function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
-//     var valida = 1;
-//     var datos = new FormData();
-
-//     datos.append("dash2", valida);
-//     datos.append("inicio2", Inic);
-//     datos.append("fin2", Fin);
-//     datos.append("especialidad2", Espec);
-//     datos.append("iafa2", FF);
-//     datos.append("doc2", NDoc);
-
-//     $.ajax({
-//         url: "public/views/src/ajaxGraficos.php",
-//         method: "POST",
-//         cache: false,
-//         data: datos,
-//         contentType: false,
-//         processData: false,
-//         dataType: "json",
-//         success: function (respuesta) {
-//             if (respuesta.length > 0) {
-//                 var especialidad = [];
-//                 var contador = [];
-//                 var colores = [];
-//                 for (var i = 0; i < respuesta.length; i++) {
-//                     especialidad.push(respuesta[i][1]);
-//                     contador.push(respuesta[i][0]);
-//                     colores.push(colorRGB());
-//                 }
-
-//                 $("canvas#graphDash2").remove();
-//                 $("div.rj2").append('<canvas id="graphDash2" width="400" height="400"></canvas>');
-//                 var ctx = document.getElementById("graphDash2").getContext("2d");
-//                 var donutData = {
-//                     labels: especialidad,
-//                     datasets: [
-//                         {
-//                             label: '# de Atenciones',
-//                             data: contador,
-//                             backgroundColor: colores,
-//                             borderColor: colores
-//                         }
-//                     ]
-//                 }
-//                 var donutOptions = {
-//                     maintainAspectRatio: false,
-//                     responsive: true,
-//                     plugins: {
-//                         legend: {
-//                             position: 'bottom',
-//                         },
-//                         title: {
-//                             display: true,
-//                             text: 'Atenciones realizados x Especialidad'
-//                         }
-//                     }
-//                 }
-//                 new Chart(ctx, {
-//                     type: 'doughnut',
-//                     data: donutData,
-//                     options: donutOptions
-//                 });
-//             }
-//             else {
-//                 $("canvas#graphDash2").remove();
-//                 $("div.rj2").append('<canvas id="graphDash2" width="400" height="400"></canvas>');
-//                 var ctx = document.getElementById("graphDash2").getContext("2d");
-//                 var donutData = {
-//                     labels: ['SIN DATOS'],
-//                     datasets: [
-//                         {
-//                             label: '# de Atenciones',
-//                             data: [0],
-//                             backgroundColor: colores,
-//                             borderColor: colores
-//                         }
-//                     ]
-//                 }
-//                 var donutOptions = {
-//                     maintainAspectRatio: false,
-//                     responsive: true,
-//                     plugins: {
-//                         legend: {
-//                             position: 'bottom',
-//                         },
-//                         title: {
-//                             display: true,
-//                             text: 'Atenciones realizados x Especialidad'
-//                         }
-//                     },
-//                     scales: {
-//                         xAxes: [{
-//                             ticks: {
-//                                 fontColor: colores
-//                             },
-//                             gridLines: {
-//                                 display: false,
-//                                 color: '#000',
-//                                 drawBorder: false
-//                             }
-//                         }],
-//                         yAxes: [{
-//                             ticks: {
-//                                 stepSize: 100,
-//                                 fontColor: '#000'
-//                             },
-//                             gridLines: {
-//                                 display: true,
-//                                 color: '#AFAFAF',
-//                                 drawBorder: false
-//                             }
-//                         }]
-//                     },
-//                 }
-//                 new Chart(ctx, {
-//                     type: 'doughnut',
-//                     data: donutData,
-//                     options: donutOptions
-//                 });
-
-//             }
-//         },
-//     });
-
-// }
-
-// function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
-//     var valida = 1;
-//     var datos = new FormData();
-
-//     datos.append("dash3", valida);
-//     datos.append("inicio3", Inic);
-//     datos.append("fin3", Fin);
-//     datos.append("especialidad3", Espec);
-//     datos.append("iafa3", FF);
-//     datos.append("doc3", NDoc);
-
-//     $.ajax({
-//         url: "public/views/src/ajaxGraficos.php",
-//         method: "POST",
-//         cache: false,
-//         data: datos,
-//         contentType: false,
-//         processData: false,
-//         dataType: "json",
-//         success: function (respuesta) {
-//             if (respuesta.length > 0) {
-//                 var iafa = [];
-//                 var contador = [];
-//                 var colores = [];
-//                 for (var i = 0; i < respuesta.length; i++) {
-//                     iafa.push(respuesta[i][1]);
-//                     contador.push(respuesta[i][0]);
-//                     colores.push(colorRGB());
-//                 }
-
-//                 $("canvas#graphDash3").remove();
-//                 $("div.rj3").append('<canvas id="graphDash3" width="400" height="400"></canvas>');
-//                 var ctx = document.getElementById("graphDash3").getContext("2d");
-//                 var donutData = {
-//                     labels: iafa,
-//                     datasets: [
-//                         {
-//                             label: '# de Atenciones',
-//                             data: contador,
-//                             backgroundColor: colores,
-//                             borderColor: colores
-//                         }
-//                     ]
-//                 }
-//                 var donutOptions = {
-//                     maintainAspectRatio: false,
-//                     responsive: true,
-//                     plugins: {
-//                         legend: {
-//                             position: 'bottom',
-//                         },
-//                         title: {
-//                             display: true,
-//                             text: 'Atenciones realizadas x IAFA'
-//                         }
-//                     }
-//                 }
-//                 new Chart(ctx, {
-//                     type: 'pie',
-//                     data: donutData,
-//                     options: donutOptions
-//                 });
-//             }
-//             else {
-//                 $("canvas#graphDash3").remove();
-//                 $("div.rj3").append('<canvas id="graphDash3" width="400" height="400"></canvas>');
-//                 var ctx = document.getElementById("graphDash3").getContext("2d");
-//                 var donutData = {
-//                     labels: ['SIN DATOS'],
-//                     datasets: [
-//                         {
-//                             label: '# de Atenciones',
-//                             data: [0],
-//                             backgroundColor: colores,
-//                             borderColor: colores
-//                         }
-//                     ]
-//                 }
-//                 var donutOptions = {
-//                     maintainAspectRatio: false,
-//                     responsive: true,
-//                     plugins: {
-//                         legend: {
-//                             position: 'bottom',
-//                         },
-//                         title: {
-//                             display: true,
-//                             text: 'Atenciones realizadas x IAFA'
-//                         }
-//                     },
-//                     scales: {
-//                         xAxes: [{
-//                             ticks: {
-//                                 fontColor: colores
-//                             },
-//                             gridLines: {
-//                                 display: false,
-//                                 color: '#000',
-//                                 drawBorder: false
-//                             }
-//                         }],
-//                         yAxes: [{
-//                             ticks: {
-//                                 stepSize: 100,
-//                                 fontColor: '#000'
-//                             },
-//                             gridLines: {
-//                                 display: true,
-//                                 color: '#AFAFAF',
-//                                 drawBorder: false
-//                             }
-//                         }]
-//                     },
-//                 }
-//                 new Chart(ctx, {
-//                     type: 'pie',
-//                     data: donutData,
-//                     options: donutOptions
-//                 });
-
-//             }
-//         },
-//     });
-
-// }
 $("#diagnosticoQX").select2(
     {
         maximumInputLength: "10",
@@ -572,18 +314,18 @@ $("#dshTipIng").on("change", function () {
             dataType: "html",
             data: { tipo: existe }
         }).done(function (respuesta) {
-            $("#dshEspecialidad").html(respuesta);
+            $("#dshEspecialidad2").html(respuesta);
         }).fail(function () {
             console.log("error");
         });
     }
     else {
         var errorhtml = "<option value='0'>Seleccione Tipo. Ingreso</option>";
-        $("#dshEspecialidad").html(errorhtml);
+        $("#dshEspecialidad2").html(errorhtml);
     }
 });
 
-$("#dshEspecialidad").on("change", function () {
+$("#dshEspecialidad2").on("change", function () {
     var existe = $(this).val();
     if (existe > 0) {
         $.ajax({

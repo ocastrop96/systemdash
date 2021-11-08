@@ -5,7 +5,7 @@
                 <img src="public/views/resources/img/mrms-logo.png" class="img-responsive" style="padding:10px 50px 0px 50px">
             </div>
             <div class="card-body">
-                <p class="login-box-msg font-weight-bold h5 text-secondary">Sistema de Sala de Operaciones - HNSEB <br><span class="font-italic h6">v.2021.10.01</span></p>
+                <p class="login-box-msg font-weight-bold h5 text-secondary">Tablero de Control - HST <br><span class="font-italic h6">v.2021.11.01</span></p>
                 <form action="" method="post" id="frmLoginQX">
                     <div id="mensajeLogQX" class="d-none">
                         <div class="alert alert-danger alert-dismissible">

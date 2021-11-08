@@ -2,13 +2,13 @@
     <!-- Brand Logo -->
     <a href="dashboard" class="brand-link">
         <img src="public/views/resources/img/mrms-logo.png" alt="MRMS-logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-bolder">SQX-Web</span>
+        <span class="brand-text font-weight-bolder">TCD-Web</span>
     </a>
 
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="public/views/resources/img/sidebar-logo.jpg" class="img-circle elevation-2" alt="LOGIN SQX">
+                <img src="public/views/resources/img/sidebar-logo.jpg" class="img-circle elevation-2" alt="LOGIN TCD">
             </div>
             <div class="info">
                 <a href="dashboard" class="d-block font-weight-bolder">Hola! <?php echo $_SESSION["loginNombresU"]; ?></a>

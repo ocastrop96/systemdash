@@ -9,7 +9,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" type="image/x-icon" href="public/views/resources/img/mrms-icon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Sala de Operaciones | SQX-HNSEB</title>
+    <title>Tablero de Control | TCD-HST</title>
     <!-- CSS -->
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap">
@@ -116,7 +116,7 @@ session_start();
     <script type="text/javascript" src="public/js/dashboard.js"></script>
     <script type="text/javascript" src="public/js/reporte-tipo-consulta.js"></script>
     <script type="text/javascript" src="public/js/reporte-tipo-diagnostico.js"></script>
-    <script type="text/javascript" src="public/js/reporte-tipo-medico.js"></script>
+    <script type="text/javascript" src="public/js/reporte-tipo-medicamento.js"></script>
     <script type="text/javascript" src="public/js/signin.js"></script>
     <!-- Scripts JS Propios -->
 </body>
