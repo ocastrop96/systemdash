@@ -16,8 +16,8 @@
     </section>
     <section class="content">
         <?php
-        $reporte = ReportesModelo::mdlListarDiagnosxMeses('2021-01-01','2021-08-31',10716,2,0,0,0);
-        var_dump($reporte);
+        // $reporte = ReportesModelo::mdlListarDiagnosxMeses('2021-01-01','2021-08-31',10716,2,0,0,0);
+        // var_dump($reporte);
         ?>
         <div class="card">
             <div class="card-body">
@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label>Seleccione Tip. Ingreso:</label>
                             <div class="input-group">
-                                <select class="form-control" name="dshTipIng" id="dshTipIng">
+                                <select class="form-control dshTipIng" name="dshTipIng" id="dshTipIng">
                                     <option value="0">-------------TODAS--------------</option>
                                     <?php
                                     $tipoIngreso = ReportesControlador::ctrListarTipoIngreso();
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             <label>Selecciona Especialidad:</label>
                             <div class="input-group">
-                                <select class="form-control" name="dshEspecialidad2" id="dshEspecialidad2">
+                                <select class="form-control dshEspecialidad2" name="dshEspecialidad2" id="dshEspecialidad2">
                                     <option value="0">Seleccione Tipo. Ingreso</option>
                                 </select>
                             </div>
