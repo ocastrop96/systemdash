@@ -1,4 +1,4 @@
-ALTER PROCEDURE ReporteTipoConsulta_Graf_Medicos @FechaIni DATE,
+CREATE PROCEDURE ReporteTipoConsulta_Graf_Medicos @FechaIni DATE,
 @FechaFin DATE,
 @FF INT,
 @IdEspecialidad INT,

@@ -1,4 +1,4 @@
-CREATE PROCEDURE ReporteTipoDiagnostico_Meses
+CREATE PROCEDURE ReporteTipoDiagnostico_Especialidades
 @fechaini date,
 @fechafin date,
 @IdTipoSErvicio int,
@@ -12,8 +12,8 @@ begin
 
 selecT
 	COUNT( * ) AS conteo,
-	DATENAME( MONTH, Atenciones.FechaIngreso ) AS mes,
-	MONTH ( Atenciones.FechaIngreso ) AS nmes
+	Especialidades.IdEspecialidad,
+	Especialidades.Nombre
 from Pacientes 
 inner join Atenciones on pacientes.IdPaciente=Atenciones.IdPaciente
 inner join AtencionesEstanciaHospitalaria on AtencionesEstanciaHospitalaria.IdAtencion=Atenciones.IdAtencion
@@ -29,10 +29,9 @@ and (Especialidades.IdEspecialidad =@IdEspecialidad or @IdEspecialidad = 0)
 and (Servicios.IdServicio = @IdServicio or @IdServicio = 0)
 and (medicos.idmedico=@IdMedico or @IdMedico = 0)
 GROUP BY
-	DATENAME( MONTH, Atenciones.FechaIngreso ),
-	MONTH ( Atenciones.FechaIngreso ) 
+	Especialidades.IdEspecialidad,Especialidades.Nombre 
 ORDER BY
-	nmes ASC;
+	conteo DESC;
 end
 
 else
@@ -40,8 +39,8 @@ begin
 
 selecT
 	COUNT( * ) AS conteo,
-	DATENAME( MONTH, Atenciones.FechaIngreso ) AS mes,
-	MONTH ( Atenciones.FechaIngreso ) AS nmes 
+	Especialidades.IdEspecialidad,
+	Especialidades.Nombre
 from Pacientes 
 inner join Atenciones on pacientes.IdPaciente=Atenciones.IdPaciente
 inner join Servicios on Servicios.IdServicio=Atenciones.IdServicioIngreso
@@ -56,8 +55,7 @@ and (Especialidades.IdEspecialidad =@IdEspecialidad or @IdEspecialidad = 0)
 and (Servicios.IdServicio = @IdServicio or @IdServicio = 0)
 and (medicos.idmedico=@IdMedico or @IdMedico = 0)
 GROUP BY
-	DATENAME( MONTH, Atenciones.FechaIngreso ),
-	MONTH ( Atenciones.FechaIngreso ) 
+	Especialidades.IdEspecialidad,Especialidades.Nombre 
 ORDER BY
-	nmes ASC;
+	conteo DESC;
 end

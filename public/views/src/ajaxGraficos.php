@@ -6,7 +6,6 @@ require_once "../../../app/model/MSdb.php";
 class AjaxGraficos
 {
     public $dniPaciente;
-
     public function ajaxBuscarPaciente()
     {
         $dni = $this->dniPaciente;
@@ -22,7 +21,6 @@ class AjaxGraficos
     }
 
     public $cie10Desc;
-
     public function ajaxBuscarDiagnostico()
     {
         $termino = $this->cie10Desc;
@@ -43,7 +41,6 @@ class AjaxGraficos
     public $espec;
     public $iafa;
     public $doc;
-
     public function graficoMeses()
     {
         $Inic = $this->fIni;
@@ -61,7 +58,6 @@ class AjaxGraficos
     public $espec2;
     public $iafa2;
     public $doc2;
-
     public function graficoEspecialidades()
     {
         $Inic = $this->fIni2;
@@ -79,7 +75,6 @@ class AjaxGraficos
     public $espec3;
     public $iafa3;
     public $doc3;
-
     public function graficoIAFAS()
     {
         $Inic = $this->fIni3;
@@ -131,7 +126,6 @@ class AjaxGraficos
     }
 
     public $datosMed;
-
     public function ajaxBuscarMedico()
     {
         $termino = $this->datosMed;
@@ -139,7 +133,7 @@ class AjaxGraficos
         $stmt = ConexionConsulta::conectar()->prepare("SELECT
         Medicos.IdMedico,
         UPPER(Empleados.ApellidoPaterno+' '+Empleados.ApellidoMaterno+' '+Empleados.Nombres) AS medicoDato
-    FROM
+        FROM
         dbo.Medicos
         INNER JOIN
         dbo.Empleados
@@ -155,28 +149,56 @@ class AjaxGraficos
         echo json_encode($data);
     }
 
-    // Graficos de Diagnosticos
-    public $inicioD;
-    public $finD;
-    public $diagnosticoD;
-    public $tipoIngD;
-    public $especialidadD;
-    public $servicioD;
-    public $medicoD;
+    public $dInicio;
+    public $dFin;
+    public $dDiagnostico;
+    public $dTipoIngreso;
+    public $dEspecialidad;
+    public $dServicio;
+    public $dMedico;
 
-    public function graficoDiagnosticoxMes()
-    {
-        // $inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico
-        $inicio = $this->inicioD;
-        $fin = $this->finD;
-        $diagnostico = $this->diagnosticoD;
-        $tipoIngreso = $this->tipoIngD;
-        $especialidad = $this->especialidadD;
-        $servicio = $this->servicioD;
-        $medico = $this->medicoD;
-        $respuesta = ReportesControlador::ctrListarDiagnosticoxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico);
+    public function ajaxListarFrecuenciaDxPorMeses(){
+        $inicio = $this->dInicio;
+        $fin = $this->dFin;
+        $diagnostico = $this->dDiagnostico;
+        $tipoIngreso = $this->dTipoIngreso;
+        $especialidad = $this->dEspecialidad;
+        $servicio = $this->dServicio;
+        $medico = $this->dMedico;
+        $respuesta = ReportesControlador::ctrListarDiagnosticoxMeses($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico);
         echo json_encode($respuesta);
     }
+
+    public $dInicio2;
+    public $dFin2;
+    public $dDiagnostico2;
+    public $dTipoIngreso2;
+    public $dEspecialidad2;
+    public $dServicio2;
+    public $dMedico2;
+
+    public function ajaxListarDxPorEspecialidades(){
+        $inicio = $this->dInicio2;
+        $fin = $this->dFin2;
+        $diagnostico = $this->dDiagnostico2;
+        $tipoIngreso = $this->dTipoIngreso2;
+        $especialidad = $this->dEspecialidad2;
+        $servicio = $this->dServicio2;
+        $medico = $this->dMedico2;
+        $respuesta = ReportesControlador::ctrListarDiagnosticoxEspecialidad($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico);
+        echo json_encode($respuesta);
+    }
+
+    public $dInicio3;
+    public $dFin3;
+
+    public function ajaxListarDxTop10(){
+        $inicio = $this->dInicio3;
+        $fin = $this->dFin3;
+        $respuesta = ReportesControlador::ctrListarDiagnosticosTop10($inicio, $fin);
+        echo json_encode($respuesta);
+    }
+
 }
 if (isset($_POST["searchTerm"])) {
     $list1 = new AjaxGraficos();
@@ -232,14 +254,34 @@ if (isset($_POST["searchTerm3"])) {
     $list8->datosMed = $_POST["searchTerm3"];
     $list8->ajaxBuscarMedico();
 }
+
 if (isset($_POST["dashD1"])) {
-    $list9 = new AjaxGraficos();
-    $list9->inicioD = $_POST["inicioD"];
-    $list9->finD = $_POST["finD"];
-    $list9->diagnosticoD = $_POST["diagnosticoD"];
-    $list9->tipoIngD = $_POST["tipoIngD"];
-    $list9->especialidadD = $_POST["especialidadD"];
-    $list9->servicioD = $_POST["servicioD"];
-    $list9->medicoD = $_POST["medicoD"];
-    $list9->graficoDiagnosticoxMes();
+    $listDxMes = new AjaxGraficos();
+    $listDxMes->dInicio = $_POST["dInicio"];
+    $listDxMes->dFin = $_POST["dFin"];
+    $listDxMes->dDiagnostico = $_POST["dDiagnostico"];
+    $listDxMes->dTipoIngreso = $_POST["dTipoIngreso"];
+    $listDxMes->dEspecialidad = $_POST["dEspecialidad"];
+    $listDxMes->dServicio = $_POST["dServicio"];
+    $listDxMes->dMedico = $_POST["dMedico"];
+    $listDxMes->ajaxListarFrecuenciaDxPorMeses();
+}
+
+if (isset($_POST["dashD2"])) {
+    $listDxEsp = new AjaxGraficos();
+    $listDxEsp->dInicio2 = $_POST["dInicio2"];
+    $listDxEsp->dFin2 = $_POST["dFin2"];
+    $listDxEsp->dDiagnostico2 = $_POST["dDiagnostico2"];
+    $listDxEsp->dTipoIngreso2 = $_POST["dTipoIngreso2"];
+    $listDxEsp->dEspecialidad2 = $_POST["dEspecialidad2"];
+    $listDxEsp->dServicio2 = $_POST["dServicio2"];
+    $listDxEsp->dMedico2 = $_POST["dMedico2"];
+    $listDxEsp->ajaxListarDxPorEspecialidades();
+}
+
+if (isset($_POST["dashD3"])) {
+    $listDxTop10 = new AjaxGraficos();
+    $listDxTop10->dInicio3 = $_POST["dInicio3"];
+    $listDxTop10->dFin3 = $_POST["dFin3"];
+    $listDxTop10->ajaxListarDxTop10();
 }

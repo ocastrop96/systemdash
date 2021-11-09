@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[ReporteTipoConsulta_Graf_Meses] --'2021-06-01','2021-06-15',3,0,''
+CREATE PROCEDURE [dbo].[ReporteTipoConsulta_Graf_Meses] --'2021-06-01','2021-06-15',3,0,''
 @FechaIni DATE,
 @FechaFin DATE,
 @FF INT,

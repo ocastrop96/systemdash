@@ -1,4 +1,4 @@
-create PROCEDURE ReporteTipoConsulta_Graf_IAFAS
+CREATE PROCEDURE ReporteTipoConsulta_Graf_IAFAS
 @FechaIni DATE,
 @FechaFin DATE,
 @FF INT,

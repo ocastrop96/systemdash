@@ -1,4 +1,4 @@
-create PROCEDURE ReporteTipoConsulta_Graf_Especialidades
+CREATE PROCEDURE ReporteTipoConsulta_Graf_Especialidades
 @FechaIni DATE,
 @FechaFin DATE,
 @FF INT,

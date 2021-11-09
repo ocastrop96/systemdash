@@ -52,4 +52,15 @@ class ReportesControlador
         $rptListGrafEspeci = ReportesModelo::mdlListarDiagnosxMeses($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico);
         return $rptListGrafEspeci;
     }
+
+    static public function ctrListarDiagnosticoxEspecialidad($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico)
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarDiagnosxEspecialidad($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico);
+        return $rptListGrafEspeci;
+    }
+    static public function ctrListarDiagnosticosTop10($inicio, $fin)
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarDiagnosTop10($inicio, $fin);
+        return $rptListGrafEspeci;
+    }
 }

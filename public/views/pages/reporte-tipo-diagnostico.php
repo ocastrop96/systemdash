@@ -16,7 +16,7 @@
     </section>
     <section class="content">
         <?php
-        // $reporte = ReportesModelo::mdlListarDiagnosxMeses('2021-01-01','2021-08-31',10716,2,0,0,0);
+        // $reporte = ReportesModelo::mdlListarDiagnosxMeses('2020-01-01','2020-08-31',50924,2,0,0,0);
         // var_dump($reporte);
         ?>
         <div class="card">
@@ -31,9 +31,19 @@
                                         <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control float-right" id="rango-dsh2" name="rango-dsh2" readonly inicio="<?php date_default_timezone_set('America/Lima');
-                                                                                                                                        echo date("Y-m-d"); ?>" fin="<?php date_default_timezone_set('America/Lima');
-                                                                                                                                                                        echo date("Y-m-d"); ?>">
+                                <input type="text" class="form-control float-right" id="rango-dsh2" name="rango-dsh2" readonly <?php date_default_timezone_set('America/Lima');
+                                                                                                                                $mes = date("m");
+                                                                                                                                $año = date("Y");
+                                                                                                                                if ($mes >= 1 && $mes <= 3) {
+                                                                                                                                    echo 'inicio2= "2021-01-01" fin2="2021-03-31"';
+                                                                                                                                } elseif ($mes >= 4 && $mes <= 6) {
+                                                                                                                                    echo 'inicio2= "2021-01-01" fin2="2021-03-31"';
+                                                                                                                                } elseif ($mes >= 7 && $mes <= 9) {
+                                                                                                                                    echo 'inicio2= "2021-01-01" fin2="2021-03-31"';
+                                                                                                                                } elseif ($mes >= 10 && $mes <= 12) {
+                                                                                                                                    echo 'inicio2= "2021-10-01" fin2="2021-12-31"';
+                                                                                                                                }
+                                                                                                                                ?>>
                             </div>
                         </div>
                     </div>
@@ -89,7 +99,7 @@
                         <div class="form-group">
                             <label>Selecciona Servicio:</label>
                             <div class="input-group">
-                                <select class="form-control" name="dshServicio" id="dshServicio">
+                                <select class="form-control dshServicio" name="dshServicio" id="dshServicio">
                                     <option value="0">Seleccione Especialidad</option>
                                 </select>
                             </div>
@@ -97,7 +107,7 @@
                     </div>
                 </div>
                 <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
                         <div class="form-group">
                             <label>Médico</label>
                             <div class="input-group">
@@ -114,10 +124,34 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3 d-xs-none"></div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title font-weight-bold"> Top 10 Diagnósticos</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart rd3">
+                                <canvas id="graphDashD3" width="350" height="350"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 d-xs-none"></div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold"> Diagnóstico por Meses</h3>
+                            <h3 class="card-title font-weight-bold"> Frecuencia de Diagnóstico por Meses</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -134,10 +168,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold">Atenciones por Especialidad</h3>
+                            <h3 class="card-title font-weight-bold">Frecuencia de Diagnóstico por Especialidades</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
