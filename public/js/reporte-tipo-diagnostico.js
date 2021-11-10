@@ -4,6 +4,7 @@ $("#deshacer-filtro-DashQX2").on("click", function () {
 VerDiagnosticosxMeses($("#rango-dsh2").attr("inicio2"), $("#rango-dsh2").attr("fin2"), $("#diagnosticoQX").val(), $("#dshTipIng").val(), $("#dshEspecialidad2").val(), $("#dshServicio").val(), $("#medicoQX").val());
 VerDiagnosticosxEspecialidad($("#rango-dsh2").attr("inicio2"), $("#rango-dsh2").attr("fin2"), $("#diagnosticoQX").val(), $("#dshTipIng").val(), $("#dshEspecialidad2").val(), $("#dshServicio").val(), $("#medicoQX").val());
 VerDiagnosticosTop10($("#rango-dsh2").attr("inicio2"), $("#rango-dsh2").attr("fin2"));
+ValidaTrimestre();
 $("input[name='rango-dsh2']").daterangepicker({
     opens: 'left',
     startDate: moment(),
@@ -48,6 +49,10 @@ $("input[name='rango-dsh2']").daterangepicker({
     $("#rango-dsh2").attr("fin2", fin2);
     VerDiagnosticosxMeses(inicio2, fin2, diagnostico, tipoIngreso, especialidad, servicio, medico);
     VerDiagnosticosxEspecialidad(inicio2, fin2, diagnostico, tipoIngreso, especialidad, servicio, medico)
+    VerDiagnosticosTop10(inicio2,fin2);
+    $("#trimestre_año").html("Personalizado");
+
+    
 });
 $("#diagnosticoQX").on("change", function () {
     let inicio = $("#rango-dsh2").attr("inicio2");
@@ -237,6 +242,32 @@ $("#medicoQX").select2(
     }
 );
 
+$("#dshTipTrimestre").on("change", function () {
+    var seleccion = $(this).val();
+    let dateActual = new Date();
+    let anioActual = dateActual.getFullYear();
+    if (seleccion == 1) {
+        $("#trimestre_año").html('1ER TRIMESTRE' + ' - ' + anioActual);
+        dInicio = anioActual+"-01-01";
+        dFin = anioActual+"-03-31";
+    }
+    else if (seleccion == 2) {
+        $("#trimestre_año").html('2DO TRIMESTRE' + ' - ' + anioActual);
+        dInicio = anioActual+"-04-01";
+        dFin = anioActual+"-06-30";
+     }
+    else if (seleccion == 3) { 
+        $("#trimestre_año").html('3ER TRIMESTRE' + ' - ' + anioActual);
+        dInicio = anioActual+"-07-01";
+        dFin = anioActual+"-09-30";
+    }
+    else if (seleccion == 4) { 
+        $("#trimestre_año").html('4TO TRIMESTRE' + ' - ' + anioActual);
+        dInicio = anioActual+"-10-01";
+        dFin = anioActual+"-12-31";
+    }
+    VerDiagnosticosTop10(dInicio, dFin);
+});
 function VerDiagnosticosxMeses(dInicio, dFin, dDiagnostico, dTipoIngreso, dEspecialidad, dServicio, dMedico) {
     var dashD1 = 1;
     var datos = new FormData();
@@ -673,6 +704,24 @@ function VerDiagnosticosTop10(dInicio, dFin) {
         },
     });
 
+}
+
+function ValidaTrimestre() {
+    let dateActual = new Date();
+    let anioActual = dateActual.getFullYear();
+    let mesActual = dateActual.getMonth();
+    if (mesActual >= 1 && mesActual <= 3) {
+        $("#trimestre_año").html('1ER TRIMESTRE' + ' - ' + anioActual);
+    }
+    else if (mesActual >= 4 && mesActual <= 6) {
+        $("#trimestre_año").html('2DO TRIMESTRE' + ' - ' + anioActual);
+    }
+    else if (mesActual >= 7 && mesActual <= 9) {
+        $("#trimestre_año").html('3ER TRIMESTRE' + ' - ' + anioActual);
+    }
+    else if (mesActual >= 10 && mesActual <= 12) {
+        $("#trimestre_año").html('4TO TRIMESTRE' + ' - ' + anioActual);
+    }
 }
 function generarNumero(numero) {
     return (Math.random() * numero).toFixed(0);

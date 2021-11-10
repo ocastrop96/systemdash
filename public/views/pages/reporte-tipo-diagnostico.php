@@ -22,7 +22,44 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label>Seleccione Trimestre (Opc):</label>
+                            <div class="input-group">
+                                <select class="form-control dshTipTrimestre" name="dshTipTrimestre" id="dshTipTrimestre">
+                                    <?php
+                                    date_default_timezone_set('America/Lima');
+                                    $mes2 = date("m");
+                                    if ($mes2 >= 1 && $mes2 <= 3) {
+                                       echo "<option value='1' selected>1ER TRIMESTRE</option>
+                                       <option value='2'>2DO TRIMESTRE</option>
+                                       <option value='3'>3ER TRIMESTRE</option>
+                                       <option value='4'>4TO TRIMESTRE</option>";
+                                    }
+                                    elseif ($mes2 >= 4 && $mes2 <= 6) {
+                                        echo "<option value='1'>1ER TRIMESTRE</option>
+                                       <option value='2'selected>2DO TRIMESTRE</option>
+                                       <option value='3'>3ER TRIMESTRE</option>
+                                       <option value='4'>4TO TRIMESTRE</option>";
+                                    }
+                                    elseif ($mes2 >= 7 && $mes2 <= 9) {
+                                        echo "<option value='1'>1ER TRIMESTRE</option>
+                                       <option value='2'>2DO TRIMESTRE</option>
+                                       <option value='3' selected>3ER TRIMESTRE</option>
+                                       <option value='4'>4TO TRIMESTRE</option>";
+                                    }
+                                    elseif ($mes2 >= 10 && $mes2 <= 12) {
+                                        echo "<option value='1'>1ER TRIMESTRE</option>
+                                        <option value='2'>2DO TRIMESTRE</option>
+                                        <option value='3'>3ER TRIMESTRE</option>
+                                        <option value='4' selected>4TO TRIMESTRE</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                         <div class="form-group">
                             <label>Selecciona un rango de fecha:</label>
                             <div class="input-group">
@@ -35,13 +72,13 @@
                                                                                                                                 $mes = date("m");
                                                                                                                                 $año = date("Y");
                                                                                                                                 if ($mes >= 1 && $mes <= 3) {
-                                                                                                                                    echo 'inicio2= "2021-01-01" fin2="2021-03-31"';
+                                                                                                                                    echo "inicio2= '" . $año . "-01-01' fin2='" . $año . "-03-31'";
                                                                                                                                 } elseif ($mes >= 4 && $mes <= 6) {
-                                                                                                                                    echo 'inicio2= "2021-01-01" fin2="2021-03-31"';
+                                                                                                                                    echo "inicio2= '" . $año . "-04-01' fin2='" . $año . "-06-30'";
                                                                                                                                 } elseif ($mes >= 7 && $mes <= 9) {
-                                                                                                                                    echo 'inicio2= "2021-01-01" fin2="2021-03-31"';
+                                                                                                                                    echo "inicio2= '" . $año . "-07-01' fin2='" . $año . "-09-30'";
                                                                                                                                 } elseif ($mes >= 10 && $mes <= 12) {
-                                                                                                                                    echo 'inicio2= "2021-10-01" fin2="2021-12-31"';
+                                                                                                                                    echo "inicio2= '" . $año . "-10-01' fin2='" . $año . "-12-31'";
                                                                                                                                 }
                                                                                                                                 ?>>
                             </div>
@@ -56,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                         <div class="form-group">
                             <label>Ingrese CIE 10 o Descripción de Diagnóstico:</label>
                             <div class="input-group">
@@ -128,7 +165,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div class="card card-danger">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold"> Top 10 Diagnósticos</h3>
+                            <h3 class="card-title font-weight-bold"> Top 10 Diagnósticos <span id="trimestre_año"></span></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
