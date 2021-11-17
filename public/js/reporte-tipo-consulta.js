@@ -101,6 +101,27 @@ $("#pacienteQX").on("change", function () {
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
 
 });
+
+$("#dshTipIng1").on("change", function () {
+    var existe = $(this).val();
+    $("#dshEspecialidad").html("<option value='0'>Seleccione Servicio</option>");
+    if (existe > 0) {
+        $.ajax({
+            url: "public/views/src/ajaxGraficos.php",
+            method: "POST",
+            dataType: "html",
+            data: { tipo: existe }
+        }).done(function (respuesta) {
+            $("#dshEspecialidad").html(respuesta);
+        }).fail(function () {
+            console.log("error");
+        });
+    }
+    else {
+        var errorhtml = "<option value='0'>Seleccione Tipo. Ingreso</option>";
+        $("#dshEspecialidad").html(errorhtml);
+    }
+});
 function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
     var valida = 1;
     var datos = new FormData();
@@ -316,7 +337,7 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'bottom',
+                            position: 'left',
                         },
                         title: {
                             display: true,
@@ -433,16 +454,19 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                             label: '# de Atenciones',
                             data: contador,
                             backgroundColor: colores,
-                            borderColor: colores
+                            borderColor: "#fff"
                         }
                     ]
                 }
                 var donutOptions = {
                     maintainAspectRatio: false,
                     responsive: true,
+                    tooltips: {
+                        enabled: false
+                    },
                     plugins: {
                         legend: {
-                            position: 'bottom',
+                            position: 'left',
                         },
                         title: {
                             display: true,

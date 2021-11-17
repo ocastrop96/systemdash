@@ -117,7 +117,7 @@ class ReportesModelo
         return $stmt->fetchAll();
     }
 
-    static public function mdlListarDiagnosxMeses($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico)
+    static public function mdlListarDiagnosxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico)
     {
         $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoDiagnostico_Meses @fechaini = :fechaini, @fechafin = :fechafin , @IdTipoSErvicio = :IdTipoSErvicio, @IdEspecialidad = :IdEspecialidad, @IdServicio = :IdServicio, @IdDiagnsotico = :IdDiagnsotico, @IdMedico = :IdMedico");
 
@@ -132,7 +132,7 @@ class ReportesModelo
         return $stmt->fetchAll();
     }
 
-    static public function mdlListarDiagnosxEspecialidad($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico)
+    static public function mdlListarDiagnosxEspecialidad($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico)
     {
         $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoDiagnostico_Especialidades @fechaini = :fechaini, @fechafin = :fechafin , @IdTipoSErvicio = :IdTipoSErvicio, @IdEspecialidad = :IdEspecialidad, @IdServicio = :IdServicio, @IdDiagnsotico = :IdDiagnsotico, @IdMedico = :IdMedico");
 
@@ -152,6 +152,70 @@ class ReportesModelo
         $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoDiagnostico_TopDiagnosticos @fechaini = :fechaini, @fechafin = :fechafin");
         $stmt->bindParam(":fechaini", $inicio, PDO::PARAM_STR);
         $stmt->bindParam(":fechafin", $fin, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    static public function mdlListarMedicaTop10Mas()
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("SELECT TOP
+        10 SUBSTRING(FC.Nombre, 0, 31) as convertido,
+        CONVERT(INT,FS.cantidad) as existencia
+        FROM
+            farmSaldo FS
+            INNER JOIN FactCatalogoBienesInsumos FC ON FS.idProducto= FC.IdProducto 
+        WHERE
+            fc.TipoProducto = 0
+        ORDER BY
+        2 DESC");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
+    static public function mdlListarMedicaTop10Menos()
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("SELECT TOP
+        10 SUBSTRING(FC.Nombre, 0, 31) as convertido,
+        CONVERT(INT,FS.cantidad) as existencia
+        FROM
+            farmSaldo FS
+            INNER JOIN FactCatalogoBienesInsumos FC ON FS.idProducto= FC.IdProducto 
+        WHERE
+            fc.TipoProducto = 0 AND FS.cantidad > 0
+        ORDER BY
+        2 ASC");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    static public function mdlListarMedicaTop10MasQX()
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("SELECT TOP
+        10 SUBSTRING(FC.Nombre, 0, 31) as convertido,
+        CONVERT(INT,FS.cantidad) as existencia
+        FROM
+            farmSaldo FS
+            INNER JOIN FactCatalogoBienesInsumos FC ON FS.idProducto= FC.IdProducto 
+        WHERE
+            fc.TipoProducto != 0
+        ORDER BY
+        2 DESC");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    static public function mdlListarMedicaTop10MenosQX()
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("SELECT TOP
+        10 SUBSTRING(FC.Nombre, 0, 31) as convertido,
+        CONVERT(INT,FS.cantidad) as existencia
+        FROM
+            farmSaldo FS
+            INNER JOIN FactCatalogoBienesInsumos FC ON FS.idProducto= FC.IdProducto 
+        WHERE
+            fc.TipoProducto != 0 AND FS.cantidad > 0
+        ORDER BY
+        2 ASC");
         $stmt->execute();
         return $stmt->fetchAll();
     }

@@ -63,4 +63,28 @@ class ReportesControlador
         $rptListGrafEspeci = ReportesModelo::mdlListarDiagnosTop10($inicio, $fin);
         return $rptListGrafEspeci;
     }
+
+    static public function ctrListarMedicamentosTop10Mas()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10Mas();
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarMedicamentosTop10MasQX()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasQX();
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarMedicamentosTop10Menos()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10Menos();
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarMedicamentosTop10MenosQX()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MenosQX();
+        return $rptListGrafEspeci;
+    }
 }

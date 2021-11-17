@@ -149,6 +149,26 @@ class AjaxGraficos
         echo json_encode($data);
     }
 
+    public $datosInsumo;
+    public function ajaxBuscarInsumo()
+    {
+        $termino = $this->datosInsumo;
+
+        $stmt = ConexionConsulta::conectar()->prepare("SELECT
+        FactCatalogoBienesInsumos.IdProducto, 
+        FactCatalogoBienesInsumos.Nombre
+    FROM
+        dbo.FactCatalogoBienesInsumos
+        WHERE FactCatalogoBienesInsumos.Nombre LIKE '$termino'+'%'
+        ORDER BY 1 OFFSET 0 ROWS
+        FETCH NEXT 50 ROWS ONLY");
+        $stmt->execute();
+        $data = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $data[] = array("id" => $row['IdProducto'], "text" =>  $row['Nombre']);
+        }
+        echo json_encode($data);
+    }
     public $dInicio;
     public $dFin;
     public $dDiagnostico;
@@ -157,7 +177,8 @@ class AjaxGraficos
     public $dServicio;
     public $dMedico;
 
-    public function ajaxListarFrecuenciaDxPorMeses(){
+    public function ajaxListarFrecuenciaDxPorMeses()
+    {
         $inicio = $this->dInicio;
         $fin = $this->dFin;
         $diagnostico = $this->dDiagnostico;
@@ -165,7 +186,7 @@ class AjaxGraficos
         $especialidad = $this->dEspecialidad;
         $servicio = $this->dServicio;
         $medico = $this->dMedico;
-        $respuesta = ReportesControlador::ctrListarDiagnosticoxMeses($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico);
+        $respuesta = ReportesControlador::ctrListarDiagnosticoxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico);
         echo json_encode($respuesta);
     }
 
@@ -177,7 +198,8 @@ class AjaxGraficos
     public $dServicio2;
     public $dMedico2;
 
-    public function ajaxListarDxPorEspecialidades(){
+    public function ajaxListarDxPorEspecialidades()
+    {
         $inicio = $this->dInicio2;
         $fin = $this->dFin2;
         $diagnostico = $this->dDiagnostico2;
@@ -185,20 +207,46 @@ class AjaxGraficos
         $especialidad = $this->dEspecialidad2;
         $servicio = $this->dServicio2;
         $medico = $this->dMedico2;
-        $respuesta = ReportesControlador::ctrListarDiagnosticoxEspecialidad($inicio, $fin, $diagnostico,$tipoIngreso,$especialidad, $servicio, $medico);
+        $respuesta = ReportesControlador::ctrListarDiagnosticoxEspecialidad($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico);
         echo json_encode($respuesta);
     }
 
     public $dInicio3;
     public $dFin3;
 
-    public function ajaxListarDxTop10(){
+    public function ajaxListarDxTop10()
+    {
         $inicio = $this->dInicio3;
         $fin = $this->dFin3;
         $respuesta = ReportesControlador::ctrListarDiagnosticosTop10($inicio, $fin);
         echo json_encode($respuesta);
     }
 
+
+    public function ajaxListarTop10MedicamentosMas()
+    {
+        $respuesta = ReportesControlador::ctrListarMedicamentosTop10Mas();
+        echo json_encode($respuesta);
+    }
+
+    public function ajaxListarTop10MedicamentosMasQX()
+    {
+        $respuesta = ReportesControlador::ctrListarMedicamentosTop10MasQX();
+        echo json_encode($respuesta);
+    }
+
+    public function ajaxListarTop10MedicamentosMenos()
+    {
+        $respuesta = ReportesControlador::ctrListarMedicamentosTop10Menos();
+        echo json_encode($respuesta);
+    }
+
+    public function ajaxListarTop10MedicamentosMenosQX()
+    {
+        $respuesta = ReportesControlador::ctrListarMedicamentosTop10MenosQX();
+        echo json_encode($respuesta);
+    }
+    
 }
 if (isset($_POST["searchTerm"])) {
     $list1 = new AjaxGraficos();
@@ -255,6 +303,13 @@ if (isset($_POST["searchTerm3"])) {
     $list8->ajaxBuscarMedico();
 }
 
+
+if (isset($_POST["searchTerm4"])) {
+    $list11 = new AjaxGraficos();
+    $list11->datosInsumo = $_POST["searchTerm4"];
+    $list11->ajaxBuscarInsumo();
+}
+
 if (isset($_POST["dashD1"])) {
     $listDxMes = new AjaxGraficos();
     $listDxMes->dInicio = $_POST["dInicio"];
@@ -285,3 +340,25 @@ if (isset($_POST["dashD3"])) {
     $listDxTop10->dFin3 = $_POST["dFin3"];
     $listDxTop10->ajaxListarDxTop10();
 }
+
+// Dashboard Medicamentos
+if (isset($_POST["dashM1"])) {
+    $listMed = new AjaxGraficos();
+    $listMed->ajaxListarTop10MedicamentosMas();
+}
+
+if (isset($_POST["dashM2"])) {
+    $listMed2 = new AjaxGraficos();
+    $listMed2->ajaxListarTop10MedicamentosMasQX();
+}
+
+if (isset($_POST["dashM3"])) {
+    $listMed3 = new AjaxGraficos();
+    $listMed3->ajaxListarTop10MedicamentosMenos();
+}
+
+if (isset($_POST["dashM4"])) {
+    $listMed4 = new AjaxGraficos();
+    $listMed4->ajaxListarTop10MedicamentosMenosQX();
+}
+// Dashboard Medicamentos

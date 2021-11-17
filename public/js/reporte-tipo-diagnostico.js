@@ -600,12 +600,10 @@ function VerDiagnosticosTop10(dInicio, dFin) {
         success: function (respuesta) {
             if (respuesta.length > 0) {
                 var diagnostico = [];
-                // var cie10 = [];
                 var contador = [];
                 var colores = [];
                 for (var i = 0; i < respuesta.length; i++) {
                     diagnostico.push(respuesta[i][1]);
-                    // cie10.push(respuesta[i][1]);
                     contador.push(respuesta[i][0]);
                     colores.push(colorRGB());
                 }
@@ -629,7 +627,7 @@ function VerDiagnosticosTop10(dInicio, dFin) {
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'bottom',
+                            position: 'left',
                         },
                         title: {
                             display: true,

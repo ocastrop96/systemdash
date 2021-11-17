@@ -47,18 +47,28 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                        <div class="form-group">
+                            <label>Seleccione Tip. Ingreso:</label>
+                            <div class="input-group">
+                                <select class="form-control dshTipIng1" name="dshTipIng1" id="dshTipIng1">
+                                    <option value="0">-------------TODAS--------------</option>
+                                    <?php
+                                    $tipoIngreso = ReportesControlador::ctrListarTipoIngreso();
+                                    foreach ($tipoIngreso as $key => $value) {
+                                        echo '<option value="' . $value["IdTipoServicio"] . '">' . $value["Descripcion"] . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                         <div class="form-group">
                             <label>Selecciona Especialidad:</label>
                             <div class="input-group">
                                 <select class="form-control" name="dshEspecialidad" id="dshEspecialidad">
                                     <option value="0">--------------------------TODAS---------------------------</option>
-                                    <?php
-                                    $especialidades = ReportesControlador::ctrListarEspecialidades();
-                                    foreach ($especialidades as $key => $value) {
-                                        echo '<option value="' . $value["IdEspecialidad"] . '">' . $value["Nombre"] . '</option>';
-                                    }
-                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -79,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                         <div class="form-group">
                             <label>Ingrese DNI:</label>
                             <div class="input-group">
