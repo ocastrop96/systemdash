@@ -123,6 +123,26 @@
                             <div class="chart rj1">
                                 <canvas id="graphDash1" width="400" height="400"></canvas>
                             </div>
+                            <div class="card-body table-responsive p-0" id="tabgraphDash31">
+                                <table class="table table-striped table-valign-middle" id="tabDetalleMeses31">
+                                    <thead>
+                                        <tr>
+                                            <th>Mes</th>
+                                            <th>Cantidad</th>
+                                            <th>Porcentaje</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoTab31">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>TOTAL</th>
+                                            <th id="totalTab31"></th>
+                                            <th id="totalTab3Porcen1"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -142,12 +162,32 @@
                         <div class="card-body rj2">
                             <canvas id="graphDash2" width="400" height="400"></canvas>
                         </div>
+
+                        <div class="card-body table-responsive p-0" id="tabgraphDash32">
+                                <table class="table table-striped table-valign-middle" id="tabDetalleEspecialidad32">
+                                    <thead>
+                                        <tr>
+                                            <th>Especialidad</th>
+                                            <th>N° Atenciones</th>
+                                            <th>Porcentaje</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoTab32">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>TOTAL</th>
+                                            <th id="totalTab32"></th>
+                                            <th id="totalTab3Porcen2"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                     </div>
                 </div>
             </div>
 
             <div class="row align-content-center">
-                <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="card card-success">
                         <div class="card-header">
@@ -162,11 +202,34 @@
                             </div>
                         </div>
                         <div class="card-body rj3">
-                            <canvas id="graphDash3" width="400" height="400"></canvas>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <canvas id="graphDash3" width="350" height="350"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body table-responsive p-0" id="tabgraphDash3">
+                            <table class="table table-striped table-valign-middle" id="tabDetalleIAFACons">
+                                <thead>
+                                    <tr>
+                                        <th>Fuente de Financimiento</th>
+                                        <th>N° de Atenciones</th>
+                                        <th>Porcentaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTab3">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th id="totalTab3"></th>
+                                        <th id="totalTab3Porcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
             </div>
         </div>
     </section>

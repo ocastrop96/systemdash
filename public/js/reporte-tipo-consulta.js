@@ -3,10 +3,13 @@
 //     color: '#000000'
 // });
 // parametrosMeses()
+// Chart.defaults.global.showTooltips = false;
 CargarAtencionesxMes($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
 CargarAtencionesxEspecialidad($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
 CargarAtencionesxIAFAS($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
-
+// DibujarTabla()
+// limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
+// $('#tabDetalleIAFACons tbody tr').remove();
 
 $("#anioDash").datepicker({
     'format': "yyyy",
@@ -62,6 +65,8 @@ $("input[name='rango-dsh']").daterangepicker({
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
+
 
 });
 $("#dshEspecialidad").on("change", function () {
@@ -73,7 +78,7 @@ $("#dshEspecialidad").on("change", function () {
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
-
+    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
 
 });
 
@@ -86,8 +91,7 @@ $("#dshIAFA").on("change", function () {
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
-
-
+    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
 });
 
 $("#pacienteQX").on("change", function () {
@@ -99,7 +103,7 @@ $("#pacienteQX").on("change", function () {
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
-
+    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
 });
 
 $("#dshTipIng1").on("change", function () {
@@ -152,7 +156,7 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
                 }
 
                 $("canvas#graphDash1").remove();
-                $("div.rj1").append('<canvas id="graphDash1" width="400" height="400"></canvas>');
+                $("div.rj1").append('<canvas id="graphDash1" width="350" height="350"></canvas>');
                 var ctx2 = document.getElementById("graphDash1").getContext("2d");
                 var salesGraphChartData = {
                     labels: mes,
@@ -217,19 +221,30 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
                                 top: 0,
                                 bottom: 0
                             }
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                return value;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
                         }
 
                     }
                 }
                 var salesGraphChart = new Chart(ctx2, {
                     type: 'bar',
+                    plugins: [ChartDataLabels],
                     data: salesGraphChartData,
                     options: salesGraphChartOptions
                 });
             }
             else {
                 $("canvas#graphDash1").remove();
-                $("div.rj1").append('<canvas id="graphDash1" width="400" height="400"></canvas>');
+                $("div.rj1").append('<canvas id="graphDash1" width="350" height="350"></canvas>');
                 var ctx2 = document.getElementById("graphDash1").getContext("2d");
                 var salesGraphChartData = {
                     labels: ['SIN DATOS'],
@@ -316,10 +331,11 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                     especialidad.push(respuesta[i][1]);
                     contador.push(respuesta[i][0]);
                     colores.push(colorRGB());
-                }
 
+                }
+                // console.log(especialidad[0]);
                 $("canvas#graphDash2").remove();
-                $("div.rj2").append('<canvas id="graphDash2" width="400" height="400"></canvas>');
+                $("div.rj2").append('<canvas id="graphDash2" width="350" height="350"></canvas>');
                 var ctx = document.getElementById("graphDash2").getContext("2d");
                 var donutData = {
                     labels: especialidad,
@@ -342,18 +358,29 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                         title: {
                             display: true,
                             text: 'Atenciones realizados x Especialidad'
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                return value;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
                         }
                     }
                 }
                 new Chart(ctx, {
                     type: 'doughnut',
                     data: donutData,
+                    plugins: [ChartDataLabels],
                     options: donutOptions
                 });
             }
             else {
                 $("canvas#graphDash2").remove();
-                $("div.rj2").append('<canvas id="graphDash2" width="400" height="400"></canvas>');
+                $("div.rj2").append('<canvas id="graphDash2" width="350" height="350"></canvas>');
                 var ctx = document.getElementById("graphDash2").getContext("2d");
                 var donutData = {
                     labels: ['SIN DATOS'],
@@ -424,7 +451,6 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
     datos.append("especialidad3", Espec);
     datos.append("iafa3", FF);
     datos.append("doc3", NDoc);
-
     $.ajax({
         url: "public/views/src/ajaxGraficos.php",
         method: "POST",
@@ -438,14 +464,39 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                 var iafa = [];
                 var contador = [];
                 var colores = [];
+                var suma = 0;
+
+                for (var j = 0; j < respuesta.length; j++) {
+                    suma += Number(respuesta[j][0]);
+                }
+
                 for (var i = 0; i < respuesta.length; i++) {
                     iafa.push(respuesta[i][1]);
                     contador.push(respuesta[i][0]);
                     colores.push(colorRGB());
+
+                    $("#cuerpoTab3").append(
+                        ' <tr>' +
+                        '<td>' + respuesta[i][1] + '</td>' +
+                        '<td>' + respuesta[i][0] + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '</tr>'
+                    );
                 }
 
                 $("canvas#graphDash3").remove();
-                $("div.rj3").append('<canvas id="graphDash3" width="400" height="400"></canvas>');
+                $("div.rj3").append('<canvas id="graphDash3" width="350" height="350"></canvas>');
+
+                const contadoresAcum = contador;
+                function totalSum(total, datapoint) {
+                    return Number(total) + Number(datapoint);
+                }
+                const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
+
+                const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
+                $("#totalTab3").html(totalValueAcum);
+                $("#totalTab3Porcen").html(percentageValue + "%");
+
                 var ctx = document.getElementById("graphDash3").getContext("2d");
                 var donutData = {
                     labels: iafa,
@@ -453,17 +504,32 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                         {
                             label: '# de Atenciones',
                             data: contador,
-                            backgroundColor: colores,
+                            backgroundColor: [
+                                "#dc3545",
+                                "#007bff",
+                                "#6610f2",
+                                "#28a745",
+                                "#6f42c1",
+                                "#e83e8c",
+                                "#fd7e14",
+                                "#20c997",
+                                "#17a2b8",
+                                "#6c757d",
+                                "#343a40",
+                                "#007bff",
+                                "#6c757d",
+                                "#28a745",
+                                "#17a2b8"],
                             borderColor: "#fff"
                         }
                     ]
                 }
                 var donutOptions = {
                     maintainAspectRatio: false,
-                    responsive: true,
                     tooltips: {
                         enabled: false
                     },
+                    responsive: true,
                     plugins: {
                         legend: {
                             position: 'left',
@@ -471,18 +537,35 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                         title: {
                             display: true,
                             text: 'Atenciones realizadas x IAFA'
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                const datapoints = context.chart.data.datasets[0].data;
+                                function totalSum(total, datapoint) {
+                                    return Number(total) + Number(datapoint);
+                                }
+                                const totalValue = datapoints.reduce(totalSum, 0);
+                                const percentageValue = (value / totalValue * 100).toFixed(1);
+                                return `${percentageValue}%`;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
                         }
                     }
                 }
                 new Chart(ctx, {
                     type: 'pie',
+                    plugins: [ChartDataLabels],
                     data: donutData,
                     options: donutOptions
                 });
             }
             else {
                 $("canvas#graphDash3").remove();
-                $("div.rj3").append('<canvas id="graphDash3" width="400" height="400"></canvas>');
+                $("div.rj3").append('<canvas id="graphDash3" width="350" height="350"></canvas>');
                 var ctx = document.getElementById("graphDash3").getContext("2d");
                 var donutData = {
                     labels: ['SIN DATOS'],
@@ -585,7 +668,15 @@ $("#pacienteQX").select2(
     }
 );
 
+function limpiarTabla(idTabla, idTbodyTable, idTotal, idTotalPorcentaje) {
 
+    // var start = $("#" + form + " input[name='" + field1 + "']").datepicker('getDate');
+    // var end = $("#" + form + " input[name='" + field2 + "']").datepicker('getDate');
+    $("table#"+idTabla+".table.table-striped.table-valign-middle tbody#"+idTbodyTable+" tr").remove();
+    $("#"+idTotal+"").html("");
+    $("#"+idTotalPorcentaje+"").html("");
+
+}
 function generarNumero(numero) {
     return (Math.random() * numero).toFixed(0);
 }

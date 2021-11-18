@@ -28,7 +28,7 @@ CREATE PROCEDURE ReporteTipoConsulta_Graf_Especialidades
 		Es.IdEspecialidad,Es.Nombre
 		ORDER BY conteo DESC
 		OFFSET 0 ROWS
-		FETCH FIRST 15 ROWS ONLY;
+		FETCH FIRST 10 ROWS ONLY;
 	ELSE SELECT COUNT
 		( * ) AS conteo,
 		Es.Nombre 
@@ -51,5 +51,7 @@ CREATE PROCEDURE ReporteTipoConsulta_Graf_Especialidades
 		AND ( P.nrodocumento=@NroDocumento OR @NroDocumento = '' ) 
 	GROUP BY
 		Es.IdEspecialidad,Es.Nombre
-		ORDER BY conteo DESC;
+		ORDER BY conteo DESC
+		OFFSET 0 ROWS
+		FETCH FIRST 10 ROWS ONLY;
 END
