@@ -1,13 +1,14 @@
-ALTER PROCEDURE ReporteTipoDiagnostico_TopDiagnosticos @fechaini DATE,
+ALTER PROCEDURE [dbo].[ReporteTipoDiagnostico_TopDiagnosticos] @fechaini DATE,
 @fechafin DATE AS BEGIN
 	SELECT COUNT
 		( * ) AS conteo,
-		Diagnosticos.CodigoCIE10 +'- '+Diagnosticos.Descripcion AS Descripcion
+Diagnosticos.CodigoCIE10,
+Diagnosticos.Descripcion
 	FROM
 		Pacientes
 		INNER JOIN Atenciones ON pacientes.IdPaciente= Atenciones.IdPaciente
-		INNER JOIN AtencionesEstanciaHospitalaria ON AtencionesEstanciaHospitalaria.IdAtencion= Atenciones.IdAtencion
-		INNER JOIN Servicios ON Servicios.IdServicio= AtencionesEstanciaHospitalaria.IdServicio
+		--INNER JOIN AtencionesEstanciaHospitalaria ON AtencionesEstanciaHospitalaria.IdAtencion= Atenciones.IdAtencion
+		INNER JOIN Servicios ON Servicios.IdServicio= Atenciones.IdServicioIngreso
 		INNER JOIN Especialidades ON Especialidades.IdEspecialidad= Servicios.IdEspecialidad
 		INNER JOIN AtencionesDiagnosticos ON AtencionesDiagnosticos.IdAtencion= Atenciones.IdAtencion
 		INNER JOIN Diagnosticos ON Diagnosticos.IdDiagnostico= AtencionesDiagnosticos.IdDiagnostico

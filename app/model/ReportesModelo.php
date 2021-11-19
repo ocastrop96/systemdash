@@ -219,4 +219,20 @@ class ReportesModelo
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    static public function mdlExcelFarmacia()
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("SELECT
+        FC.Nombre,
+        CONVERT ( INT, FS.cantidad ) AS stock 
+        FROM
+        farmSaldo FS
+        INNER JOIN FactCatalogoBienesInsumos FC ON FS.idProducto= FC.IdProducto 
+        WHERE
+        FS.cantidad > 0 
+        ORDER BY
+        2 DESC");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

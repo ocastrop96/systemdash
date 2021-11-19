@@ -100,6 +100,22 @@
             </div>
         </div>
     </section> -->
+
+    <section class="content">
+        <div class="row ml-1">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                <div class="form-group">
+                    <label class="text-light">.</label>
+                    <div class="input-group">
+                        <a href="public/views/reports/ReporteFarmacia.php?reporte=reporte" class="rptControl">
+                            <button type="btn" class="btn bg-success" id="btnRptControl"><i class="fas fa-file-excel"></i>&nbsp; Exportar Saldos
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="content">
         <div class="container-fluid">
             <div class="row">

@@ -1,4 +1,4 @@
-CREATE PROCEDURE ReporteTipoDiagnostico_Especialidades
+ALTER PROCEDURE ReporteTipoDiagnostico_Especialidades
 @fechaini date,
 @fechafin date,
 @IdTipoSErvicio int,
@@ -10,7 +10,7 @@ as
 if @IdTipoSErvicio = 2 or @IdTipoSErvicio=3
 begin
 
-selecT
+selecT TOP 10
 	COUNT( * ) AS conteo,
 	Especialidades.IdEspecialidad,
 	Especialidades.Nombre
@@ -37,7 +37,7 @@ end
 else
 begin
 
-selecT
+selecT TOP 10
 	COUNT( * ) AS conteo,
 	Especialidades.IdEspecialidad,
 	Especialidades.Nombre

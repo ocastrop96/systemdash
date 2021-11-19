@@ -1,15 +1,6 @@
-// Chart.register(ChartDataLabels);
-// Chart.defaults.set('plugins.datalabels', {
-//     color: '#000000'
-// });
-// parametrosMeses()
-// Chart.defaults.global.showTooltips = false;
 CargarAtencionesxMes($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
 CargarAtencionesxEspecialidad($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
 CargarAtencionesxIAFAS($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
-// DibujarTabla()
-// limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
-// $('#tabDetalleIAFACons tbody tr').remove();
 
 $("#anioDash").datepicker({
     'format': "yyyy",
@@ -62,12 +53,29 @@ $("input[name='rango-dsh']").daterangepicker({
     let ndoc = $("#pacienteQX").val();
 
 
+
+    $("#rango-dsh").attr("inicio", inicio);
+    $("#rango-dsh").attr("fin", fin);
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
-    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
+    limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
+    limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
+    limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
+});
 
-
+$("#dshTipIng1").on("change", function () {
+    let inicio = $("#rango-dsh").attr("inicio");
+    let fin = $("#rango-dsh").attr("fin");
+    let especialidad = 0;
+    let iafa = $("#dshIAFA").val();
+    let ndoc = $("#pacienteQX").val();
+    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
+    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
+    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
+    limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
+    limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
 });
 $("#dshEspecialidad").on("change", function () {
     let inicio = $("#rango-dsh").attr("inicio");
@@ -78,7 +86,10 @@ $("#dshEspecialidad").on("change", function () {
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
-    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
+    limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
+    limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
+    limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
+
 
 });
 
@@ -91,7 +102,10 @@ $("#dshIAFA").on("change", function () {
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
-    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
+    limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
+    limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
+    limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
+
 });
 
 $("#pacienteQX").on("change", function () {
@@ -103,7 +117,10 @@ $("#pacienteQX").on("change", function () {
     CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
     CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
-    limpiarTabla("tabDetalleIAFACons","cuerpoTab3","totalTab3","totalTab3Porcen");
+    limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
+    limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
+    limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
+
 });
 
 $("#dshTipIng1").on("change", function () {
@@ -149,11 +166,37 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
                 var mes = [];
                 var contador = [];
                 var colores = [];
+
+                var suma = 0;
+
+                for (var j = 0; j < respuesta.length; j++) {
+                    suma += Number(respuesta[j][0]);
+                }
+
                 for (var i = 0; i < respuesta.length; i++) {
                     contador.push(respuesta[i][0]);
                     mes.push(respuesta[i][1]);
                     colores.push(colorRGB());
+
+                    $("#cuerpoTab31").append(
+                        ' <tr>' +
+                        '<td>' + respuesta[i][1] + '</td>' +
+                        '<td>' + respuesta[i][0] + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '</tr>'
+                    );
                 }
+
+                const contadoresAcum = contador;
+                function totalSum(total, datapoint) {
+                    return Number(total) + Number(datapoint);
+                }
+                const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
+
+                const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
+                $("#totalTab31").html(totalValueAcum);
+                $("#totalTab3Porcen1").html(percentageValue + "%");
+
 
                 $("canvas#graphDash1").remove();
                 $("div.rj1").append('<canvas id="graphDash1" width="350" height="350"></canvas>');
@@ -327,13 +370,38 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                 var especialidad = [];
                 var contador = [];
                 var colores = [];
+
+                var suma = 0;
+
+                for (var j = 0; j < respuesta.length; j++) {
+                    suma += Number(respuesta[j][0]);
+                }
+
                 for (var i = 0; i < respuesta.length; i++) {
                     especialidad.push(respuesta[i][1]);
                     contador.push(respuesta[i][0]);
                     colores.push(colorRGB());
 
+                    $("#cuerpoTab32").append(
+                        ' <tr>' +
+                        '<td>' + respuesta[i][1] + '</td>' +
+                        '<td>' + respuesta[i][0] + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '</tr>'
+                    );
+
                 }
-                // console.log(especialidad[0]);
+
+                const contadoresAcum = contador;
+                function totalSum(total, datapoint) {
+                    return Number(total) + Number(datapoint);
+                }
+                const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
+
+                const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
+                $("#totalTab32").html(totalValueAcum);
+                $("#totalTab3Porcen2").html(percentageValue + "%");
+
                 $("canvas#graphDash2").remove();
                 $("div.rj2").append('<canvas id="graphDash2" width="350" height="350"></canvas>');
                 var ctx = document.getElementById("graphDash2").getContext("2d");
@@ -374,7 +442,7 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                 new Chart(ctx, {
                     type: 'doughnut',
                     data: donutData,
-                    plugins: [ChartDataLabels],
+                    // plugins: [ChartDataLabels],
                     options: donutOptions
                 });
             }
@@ -538,27 +606,30 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                             display: true,
                             text: 'Atenciones realizadas x IAFA'
                         },
-                        datalabels: {
-                            formatter: (value, context) => {
-                                const datapoints = context.chart.data.datasets[0].data;
-                                function totalSum(total, datapoint) {
-                                    return Number(total) + Number(datapoint);
-                                }
-                                const totalValue = datapoints.reduce(totalSum, 0);
-                                const percentageValue = (value / totalValue * 100).toFixed(1);
-                                return `${percentageValue}%`;
-                            },
-                            color: '#fff',
-                            font: {
-                                weight: 'bold',
-                                size: 14,
-                            }
-                        }
+                        // datalabels: {
+                        //     formatter: (value, context) => {
+                        //         // const datapoints = context.chart.data.datasets[0].data;
+                        //         // function totalSum(total, datapoint) {
+                        //         //     return Number(total) + Number(datapoint);
+                        //         // }
+                        //         // const totalValue = datapoints.reduce(totalSum, 0);
+                        //         // const percentageValue = (value / totalValue * 100).toFixed(1);
+                        //         // return `${percentageValue}%`;
+
+                        //         return value;
+
+                        //     },
+                        //     color: '#fff',
+                        //     font: {
+                        //         weight: 'bold',
+                        //         size: 14,
+                        //     }
+                        // }
                     }
                 }
                 new Chart(ctx, {
                     type: 'pie',
-                    plugins: [ChartDataLabels],
+                    // plugins: [ChartDataLabels],
                     data: donutData,
                     options: donutOptions
                 });
@@ -669,12 +740,9 @@ $("#pacienteQX").select2(
 );
 
 function limpiarTabla(idTabla, idTbodyTable, idTotal, idTotalPorcentaje) {
-
-    // var start = $("#" + form + " input[name='" + field1 + "']").datepicker('getDate');
-    // var end = $("#" + form + " input[name='" + field2 + "']").datepicker('getDate');
-    $("table#"+idTabla+".table.table-striped.table-valign-middle tbody#"+idTbodyTable+" tr").remove();
-    $("#"+idTotal+"").html("");
-    $("#"+idTotalPorcentaje+"").html("");
+    $("table#" + idTabla + ".table.table-striped.table-valign-middle tbody#" + idTbodyTable + " tr").remove();
+    $("#" + idTotal + "").html("");
+    $("#" + idTotalPorcentaje + "").html("");
 
 }
 function generarNumero(numero) {

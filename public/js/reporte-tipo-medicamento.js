@@ -145,11 +145,22 @@ function VerTop10MedicamentosMas() {
                         title: {
                             display: true,
                             text: 'Top 10 Insumos con más stock'
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                return value;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
                         }
                     }
                 }
                 new Chart(ctx2, {
                     type: 'doughnut',
+                    plugins: [ChartDataLabels],
                     data: donutData,
                     options: donutOptions
                 });
@@ -264,11 +275,22 @@ function VerTop10MedicamentosMasQX() {
                         title: {
                             display: true,
                             text: 'Top 10 Insumos Qx con más stock'
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                return value;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
                         }
                     }
                 }
                 new Chart(ctx2, {
                     type: 'doughnut',
+                    plugins: [ChartDataLabels],
                     data: donutData,
                     options: donutOptions
                 });
@@ -383,11 +405,22 @@ function VerTop10MedicamentosMenos() {
                         title: {
                             display: true,
                             text: 'Top 10 Insumos con menos stock'
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                return value;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
                         }
                     }
                 }
                 new Chart(ctx2, {
                     type: 'doughnut',
+                    plugins: [ChartDataLabels],
                     data: donutData,
                     options: donutOptions
                 });
@@ -502,11 +535,22 @@ function VerTop10MedicamentosMenosQX() {
                         title: {
                             display: true,
                             text: 'Top 10 Insumos Qx con menos stock'
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                return value;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
                         }
                     }
                 }
                 new Chart(ctx2, {
                     type: 'doughnut',
+                    plugins: [ChartDataLabels],
                     data: donutData,
                     options: donutOptions
                 });

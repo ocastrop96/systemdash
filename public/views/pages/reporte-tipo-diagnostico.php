@@ -31,24 +31,21 @@
                                     date_default_timezone_set('America/Lima');
                                     $mes2 = date("m");
                                     if ($mes2 >= 1 && $mes2 <= 3) {
-                                       echo "<option value='1' selected>1ER TRIMESTRE</option>
+                                        echo "<option value='1' selected>1ER TRIMESTRE</option>
                                        <option value='2'>2DO TRIMESTRE</option>
                                        <option value='3'>3ER TRIMESTRE</option>
                                        <option value='4'>4TO TRIMESTRE</option>";
-                                    }
-                                    elseif ($mes2 >= 4 && $mes2 <= 6) {
+                                    } elseif ($mes2 >= 4 && $mes2 <= 6) {
                                         echo "<option value='1'>1ER TRIMESTRE</option>
                                        <option value='2'selected>2DO TRIMESTRE</option>
                                        <option value='3'>3ER TRIMESTRE</option>
                                        <option value='4'>4TO TRIMESTRE</option>";
-                                    }
-                                    elseif ($mes2 >= 7 && $mes2 <= 9) {
+                                    } elseif ($mes2 >= 7 && $mes2 <= 9) {
                                         echo "<option value='1'>1ER TRIMESTRE</option>
                                        <option value='2'>2DO TRIMESTRE</option>
                                        <option value='3' selected>3ER TRIMESTRE</option>
                                        <option value='4'>4TO TRIMESTRE</option>";
-                                    }
-                                    elseif ($mes2 >= 10 && $mes2 <= 12) {
+                                    } elseif ($mes2 >= 10 && $mes2 <= 12) {
                                         echo "<option value='1'>1ER TRIMESTRE</option>
                                         <option value='2'>2DO TRIMESTRE</option>
                                         <option value='3'>3ER TRIMESTRE</option>
@@ -56,6 +53,16 @@
                                     }
                                     ?>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label for="dshTipAnio">Año: &nbsp;</label>
+                            <div class="input-group">
+                                <input type="text" name="dshTipAnio" id="dshTipAnio" class="form-control" required value="<?php date_default_timezone_set('America/Lima');
+                                                                                                                        $fechaActual = date('Y');
+                                                                                                                        echo $fechaActual; ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -93,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="form-group">
                             <label>Ingrese CIE 10 o Descripción de Diagnóstico:</label>
                             <div class="input-group">
@@ -105,7 +112,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                         <div class="form-group">
                             <label>Seleccione Tip. Ingreso:</label>
                             <div class="input-group">
@@ -121,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="form-group">
                             <label>Selecciona Especialidad:</label>
                             <div class="input-group">
@@ -165,7 +172,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div class="card card-danger">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold"> Top 10 Diagnósticos <span id="trimestre_año"></span></h3>
+                            <h3 class="card-title font-weight-bold"> Top 10 Diagnósticos - <span id="trimestre_año2"></span></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -180,6 +187,30 @@
                                 <canvas id="graphDashD3" width="350" height="350"></canvas>
                             </div>
                         </div>
+
+                        <div class="card-body table-responsive p-0" id="tabgraphDashD1">
+                            <table class="table table-striped table-valign-middle" id="tabDetalle10Diag">
+                                <thead>
+                                    <tr>
+                                        <th>CIE 10</th>
+                                        <th>Descripción Dx</th>
+                                        <th>N° Frecuencia
+                                        </th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTab10Diag">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th></th>
+                                        <th id="totalTab10Diag"></th>
+                                        <th id="totalTab10DiagPorcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-3 d-xs-none"></div>
@@ -188,7 +219,7 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold"> Frecuencia de Diagnóstico por Meses</h3>
+                            <h3 class="card-title font-weight-bold"> Frecuencia de Diagnóstico por Meses - <span id="trimestre_año3"></span></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -202,13 +233,35 @@
                             <div class="chart rd1">
                                 <canvas id="graphDashD1" width="350" height="350"></canvas>
                             </div>
+
+                            <div class="card-body table-responsive p-0" id="tabgraphDashD2">
+                                <table class="table table-striped table-valign-middle" id="tabDetalleMesDiag">
+                                    <thead>
+                                        <tr>
+                                            <th>Mes</th>
+                                            <th>N° Frecuencia
+                                            </th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoTabMesDiag">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>TOTAL</th>
+                                            <th id="totalTabMesDiag"></th>
+                                            <th id="totalTabMesDiagPorcen"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
                     <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold">Frecuencia de Diagnóstico por Especialidades</h3>
+                            <h3 class="card-title font-weight-bold">Frecuencia de Diagnóstico por Especialidades - <span id="trimestre_año"></span></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
@@ -219,7 +272,30 @@
                             </div>
                         </div>
                         <div class="card-body rd2">
-                            <canvas id="graphDashD2" width="350" height="350"></canvas>
+                            <canvas id="graphDashD2" width="400" height="400"></canvas>
+                        </div>
+
+
+                        <div class="card-body table-responsive p-0" id="tabgraphDashD3">
+                            <table class="table table-striped table-valign-middle" id="tabDetalleEspDiag">
+                                <thead>
+                                    <tr>
+                                        <th>Especialidad</th>
+                                        <th>N° Frecuencia
+                                        </th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTabEspDiag">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th id="totalTabEspDiag"></th>
+                                        <th id="totalTabEspDiagPorcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>

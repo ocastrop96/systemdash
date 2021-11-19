@@ -23,7 +23,7 @@
                 <div class="col-md-6">
                     <div class="card card-gray">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold"> Reporte Tipo Consulta Externa</h3>
+                            <h3 class="card-title font-weight-bold"> Dashboard Atenciones</h3>
                         </div>
                         <div class="card-body">
                             <center>
@@ -37,7 +37,7 @@
                 <div class="col-md-6">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold">Reporte Tipo Diagnóstico</h3>
+                            <h3 class="card-title font-weight-bold">Dashboard Diagnósticos</h3>
                         </div>
                         <div class="card-body">
                             <center>
@@ -54,7 +54,7 @@
                 <div class="col-md-6">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold">Reporte de Medicamentos</h3>
+                            <h3 class="card-title font-weight-bold">Dashboard Famacia</h3>
                         </div>
                         <div class="card-body">
                             <center>
