@@ -88,9 +88,9 @@ class ReportesControlador
         return $rptListGrafEspeci;
     }
 
-    static public function ctrListarMedicamentosTop10MasVendidos()
+    static public function ctrListarMedicamentosTop10MasVendidos($inicio, $fin)
     {
-        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasVendidos();
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasVendidos($inicio, $fin);
         return $rptListGrafEspeci;
     }
 

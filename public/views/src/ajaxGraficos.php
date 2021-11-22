@@ -256,13 +256,15 @@ class AjaxGraficos
         echo json_encode($respuesta);
     }
 
-
+    public $dInicioPV;
+    public $dFinPV;
     public function ajaxListarTop10MedicamentosMasVendidos()
     {
-        $respuesta = ReportesControlador::ctrListarMedicamentosTop10MasVendidos();
+        $inicio = $this->dInicioPV;
+        $fin = $this->dFinPV;
+        $respuesta = ReportesControlador::ctrListarMedicamentosTop10MasVendidos($inicio, $fin);
         echo json_encode($respuesta);
     }
-    
 }
 if (isset($_POST["searchTerm"])) {
     $list1 = new AjaxGraficos();
@@ -387,6 +389,8 @@ if (isset($_POST["opcion"])) {
 
 if (isset($_POST["dashMV1"])) {
     $listMedMV = new AjaxGraficos();
+    $listMedMV->dInicioPV = $_POST["dInicioPV"];
+    $listMedMV->dFinPV = $_POST["dFinPV"];
     $listMedMV->ajaxListarTop10MedicamentosMasVendidos();
 }
 // Dashboard Medicamentos

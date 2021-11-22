@@ -61,6 +61,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-sm-2 col-md-1 col-lg-1">
+                        <div class="form-group">
+                            <label for="dshTipAnio3">Año: &nbsp;</label>
+                            <div class="input-group">
+                                <input type="text" name="dshTipAnio3" id="dshTipAnio3" class="form-control" required value="<?php date_default_timezone_set('America/Lima');
+                                                                                                                            $fechaActual = date('Y');
+                                                                                                                            echo $fechaActual; ?>" readonly>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                         <div class="form-group">
                             <label>Selecciona un rango de fecha:</label>
@@ -74,13 +84,13 @@
                                                                                                                                 $mes = date("m");
                                                                                                                                 $año = date("Y");
                                                                                                                                 if ($mes >= 1 && $mes <= 3) {
-                                                                                                                                    echo "inicio2= '" . $año . "-01-01' fin2='" . $año . "-03-31'";
+                                                                                                                                    echo "inicio3= '" . $año . "-01-01' fin3='" . $año . "-03-31'";
                                                                                                                                 } elseif ($mes >= 4 && $mes <= 6) {
-                                                                                                                                    echo "inicio2= '" . $año . "-04-01' fin2='" . $año . "-06-30'";
+                                                                                                                                    echo "inicio3= '" . $año . "-04-01' fin3='" . $año . "-06-30'";
                                                                                                                                 } elseif ($mes >= 7 && $mes <= 9) {
-                                                                                                                                    echo "inicio2= '" . $año . "-07-01' fin2='" . $año . "-09-30'";
+                                                                                                                                    echo "inicio3= '" . $año . "-07-01' fin3='" . $año . "-09-30'";
                                                                                                                                 } elseif ($mes >= 10 && $mes <= 12) {
-                                                                                                                                    echo "inicio2= '" . $año . "-10-01' fin2='" . $año . "-12-31'";
+                                                                                                                                    echo "inicio3= '" . $año . "-10-01' fin3='" . $año . "-12-31'";
                                                                                                                                 }
                                                                                                                                 ?>>
                             </div>
@@ -95,7 +105,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="form-group">
                             <label>Ingrese Nombre del Medicamento:</label>
                             <div class="input-group">
@@ -104,7 +114,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -116,7 +126,7 @@
                 <div class="col-md-6">
                     <div class="card card-warning">
                         <div class="card-header">
-                            <h3 class="card-title font-weight-bold"> 10 Medicamentos más vendidos</h3>
+                            <h3 class="card-title font-weight-bold"> 10 Medicamentos más vendidos - <span id="trimestre_añoPV"></span></h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>

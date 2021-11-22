@@ -269,9 +269,11 @@ class ReportesModelo
         $stmt = null;
     }
 
-    static public function mdlListarMedicaTop10MasVendidos()
+    static public function mdlListarMedicaTop10MasVendidos($inicio, $fin)
     {
-        $stmt = ConexionConsulta::conectar()->prepare("exec TotalesMedicamentos");
+        $stmt = ConexionConsulta::conectar()->prepare("exec TotalesMedicamentos @fini = :inicio,@ffin = :fin");
+        $stmt->bindParam(":inicio", $inicio, PDO::PARAM_STR);
+        $stmt->bindParam(":fin", $fin, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
         $stmt->close();

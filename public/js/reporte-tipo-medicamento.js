@@ -1,12 +1,21 @@
 $("#deshacer-filtro-DashQX3").on("click", function () {
     window.location = "reporte-tipo-medicamento";
 });
-VerTop10MedicamentosMasVendidos()
+ValidaTrimestre2();
+VerTop10MedicamentosMasVendidos($("#rango-dsh3").attr("inicio3"), $("#rango-dsh3").attr("fin3"));
 VerTop10MedicamentosMas();
 VerTop10MedicamentosMasQX();
 VerTop10MedicamentosMenos();
 VerTop10MedicamentosMenosQX();
-
+$("#dshTipAnio3").datepicker({
+    'format': "yyyy",
+    'viewMode': "years",
+    'minViewMode': "years",
+    'autoclose': true,
+    'orientation': 'auto bottom',
+    'language': 'es',
+    'endDate': new Date(),
+});
 $("#medicamentoQX").select2(
     {
         maximumInputLength: "10",
@@ -84,26 +93,87 @@ $("input[name='rango-dsh3']").daterangepicker({
 }, function (start, end) {
     let inicio3 = start.format('YYYY-MM-DD');
     let fin3 = end.format('YYYY-MM-DD');
-    // let diagnostico = $("#diagnosticoQX").val();
-    // let tipoIngreso = $("#dshTipIng").val();
-    // let especialidad = $("#dshEspecialidad2").val();
-    // let servicio = $("#dshServicio").val();
-    // let medico = $("#medicoQX").val();
-
-    // $("#rango-dsh2").attr("inicio2", inicio2);
-    // $("#rango-dsh2").attr("fin2", fin2);
-    // VerDiagnosticosxMeses(inicio2, fin2, diagnostico, tipoIngreso, especialidad, servicio, medico);
-    // VerDiagnosticosxEspecialidad(inicio2, fin2, diagnostico, tipoIngreso, especialidad, servicio, medico)
-    // VerDiagnosticosTop10(inicio2,fin2);
-    // $("#trimestre_año").html("Personalizado");
+    $("#rango-dsh3").attr("inicio3", inicio3);
+    $("#rango-dsh3").attr("fin3", fin3);
+    $("#trimestre_añoPV").html(formatoFecha2(inicio3, fin3));
+    VerTop10MedicamentosMasVendidos(inicio3, fin3);
 });
 
-function VerTop10MedicamentosMasVendidos() {
+$("#dshTipTrimestre3").on("change", function () {
+    var seleccion = $(this).val();
+    let anio = $("#dshTipAnio3").val();
+    if (seleccion == 1) {
+        $("#trimestre_añoPV").html('1ER TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-01-01";
+        dFin = anio + "-03-31";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    else if (seleccion == 2) {
+        $("#trimestre_añoPV").html('2DO TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-04-01";
+        dFin = anio + "-06-30";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    else if (seleccion == 3) {
+        $("#trimestre_añoPV").html('3ER TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-07-01";
+        dFin = anio + "-09-30";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    else if (seleccion == 4) {
+        $("#trimestre_añoPV").html('4TO TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-10-01";
+        dFin = anio + "-12-31";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    VerTop10MedicamentosMasVendidos(dInicio, dFin);
+});
+
+$("#dshTipAnio3").on("change", function () {
+    var seleccion = $("#dshTipTrimestre3").val();
+    let anio = $("#dshTipAnio3").val();
+    if (seleccion == 1) {
+        $("#trimestre_añoPV").html('1ER TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-01-01";
+        dFin = anio + "-03-31";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    else if (seleccion == 2) {
+        $("#trimestre_añoPV").html('2DO TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-04-01";
+        dFin = anio + "-06-30";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    else if (seleccion == 3) {
+        $("#trimestre_añoPV").html('3ER TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-07-01";
+        dFin = anio + "-09-30";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    else if (seleccion == 4) {
+        $("#trimestre_añoPV").html('4TO TRIMESTRE' + ' - ' + anio);
+        dInicio = anio + "-10-01";
+        dFin = anio + "-12-31";
+        $("#rango-dsh3").attr("inicio3", dInicio);
+        $("#rango-dsh3").attr("fin3", dFin);
+    }
+    VerTop10MedicamentosMasVendidos(dInicio, dFin);
+});
+
+function VerTop10MedicamentosMasVendidos(dInicioPV, dFinPV) {
     var dashDV1 = 1;
     var datos = new FormData();
 
     datos.append("dashMV1", dashDV1);
-
+    datos.append("dInicioPV", dInicioPV);
+    datos.append("dFinPV", dFinPV);
     $.ajax({
         url: "public/views/src/ajaxGraficos.php",
         method: "POST",
@@ -722,4 +792,39 @@ function VerTop10MedicamentosMenosQX() {
         },
     });
 
+}
+
+function ValidaTrimestre2() {
+    let dateActual2 = new Date();
+    let anioActual2 = dateActual2.getFullYear();
+    let mesActual2 = dateActual2.getMonth();
+    if (mesActual2 >= 1 && mesActual2 <= 3) {
+        $("#trimestre_añoPV").html('1ER TRIMESTRE' + ' - ' + anioActual2);
+
+    }
+    else if (mesActual2 >= 4 && mesActual2 <= 6) {
+        $("#trimestre_añoPV").html('2DO TRIMESTRE' + ' - ' + anioActual2);
+
+    }
+    else if (mesActual2 >= 7 && mesActual2 <= 9) {
+        $("#trimestre_añoPV").html('3ER TRIMESTRE' + ' - ' + anioActual2);
+
+    }
+    else if (mesActual2 >= 10 && mesActual2 <= 12) {
+        $("#trimestre_añoPV").html('4TO TRIMESTRE' + ' - ' + anioActual2);
+
+    }
+}
+
+
+function formatoFecha2(input1, input2) {
+    var datePart = input1.match(/\d+/g),
+        year = datePart[0].substring(0, 4), // get only two digits
+        month = datePart[1], day = datePart[2];
+
+    var datePart2 = input2.match(/\d+/g),
+        year2 = datePart2[0].substring(0, 4), // get only two digits
+        month2 = datePart2[1], day2 = datePart2[2];
+
+    return day + '/' + month + '/' + year + ' hasta ' + day2 + '/' + month2 + '/' + year2;
 }
