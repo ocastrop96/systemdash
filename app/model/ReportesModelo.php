@@ -90,6 +90,8 @@ class ReportesModelo
         $stmt->bindParam(":NroDocumento", $doc, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
 
@@ -103,6 +105,8 @@ class ReportesModelo
         $stmt->bindParam(":NroDocumento", $doc, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
     static public function mdlListarIAFASD($inicio, $fin, $especialidad, $iafa, $doc)
@@ -115,6 +119,8 @@ class ReportesModelo
         $stmt->bindParam(":NroDocumento", $doc, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
     static public function mdlListarDiagnosxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico)
@@ -130,6 +136,8 @@ class ReportesModelo
         $stmt->bindParam(":fechafin", $fin, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
     static public function mdlListarDiagnosxEspecialidad($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico)
@@ -145,6 +153,8 @@ class ReportesModelo
         $stmt->bindParam(":fechafin", $fin, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
     static public function mdlListarDiagnosTop10($inicio, $fin)
@@ -154,6 +164,8 @@ class ReportesModelo
         $stmt->bindParam(":fechafin", $fin, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
     static public function mdlListarMedicaTop10Mas()
@@ -170,6 +182,8 @@ class ReportesModelo
         2 DESC");
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
 
@@ -187,6 +201,8 @@ class ReportesModelo
         2 ASC");
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
     static public function mdlListarMedicaTop10MasQX()
     {
@@ -202,6 +218,8 @@ class ReportesModelo
         2 DESC");
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
     static public function mdlListarMedicaTop10MenosQX()
@@ -218,6 +236,8 @@ class ReportesModelo
         2 ASC");
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 
     static public function mdlExcelFarmacia()
@@ -234,5 +254,27 @@ class ReportesModelo
         2 DESC");
         $stmt->execute();
         return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
+    }
+
+    static public function mdlListarContadoresWidget($opcion)
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("exec ContadoresTotales @op = :op");
+
+        $stmt->bindParam(":op", $opcion, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
+        $stmt->close();
+        $stmt = null;
+    }
+
+    static public function mdlListarMedicaTop10MasVendidos()
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("exec TotalesMedicamentos");
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
     }
 }

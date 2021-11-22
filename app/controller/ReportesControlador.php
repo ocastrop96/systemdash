@@ -87,6 +87,18 @@ class ReportesControlador
         $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MenosQX();
         return $rptListGrafEspeci;
     }
+
+    static public function ctrListarMedicamentosTop10MasVendidos()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasVendidos();
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarContadoresWidget($opcion)
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarContadoresWidget($opcion);
+        return $rptListGrafEspeci;
+    }
     static public function ctrReporteControlFarmacia()
     {
         if (isset($_GET["reporte"])) {

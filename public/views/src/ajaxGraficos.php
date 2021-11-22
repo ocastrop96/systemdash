@@ -246,6 +246,22 @@ class AjaxGraficos
         $respuesta = ReportesControlador::ctrListarMedicamentosTop10MenosQX();
         echo json_encode($respuesta);
     }
+
+    public $opcion;
+
+    public function ajaxListarContadoresWidget()
+    {
+        $op = $this->opcion;
+        $respuesta = ReportesControlador::ctrListarContadoresWidget($op);
+        echo json_encode($respuesta);
+    }
+
+
+    public function ajaxListarTop10MedicamentosMasVendidos()
+    {
+        $respuesta = ReportesControlador::ctrListarMedicamentosTop10MasVendidos();
+        echo json_encode($respuesta);
+    }
     
 }
 if (isset($_POST["searchTerm"])) {
@@ -360,5 +376,17 @@ if (isset($_POST["dashM3"])) {
 if (isset($_POST["dashM4"])) {
     $listMed4 = new AjaxGraficos();
     $listMed4->ajaxListarTop10MedicamentosMenosQX();
+}
+
+if (isset($_POST["opcion"])) {
+    $listCont = new AjaxGraficos();
+    $listCont->opcion = $_POST["opcion"];
+    $listCont->ajaxListarContadoresWidget();
+}
+
+
+if (isset($_POST["dashMV1"])) {
+    $listMedMV = new AjaxGraficos();
+    $listMedMV->ajaxListarTop10MedicamentosMasVendidos();
 }
 // Dashboard Medicamentos

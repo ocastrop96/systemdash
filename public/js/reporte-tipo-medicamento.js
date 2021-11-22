@@ -1,6 +1,7 @@
 $("#deshacer-filtro-DashQX3").on("click", function () {
     window.location = "reporte-tipo-medicamento";
 });
+VerTop10MedicamentosMasVendidos()
 VerTop10MedicamentosMas();
 VerTop10MedicamentosMasQX();
 VerTop10MedicamentosMenos();
@@ -97,6 +98,112 @@ $("input[name='rango-dsh3']").daterangepicker({
     // $("#trimestre_año").html("Personalizado");
 });
 
+function VerTop10MedicamentosMasVendidos() {
+    var dashDV1 = 1;
+    var datos = new FormData();
+
+    datos.append("dashMV1", dashDV1);
+
+    $.ajax({
+        url: "public/views/src/ajaxGraficos.php",
+        method: "POST",
+        cache: false,
+        data: datos,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+            if (respuesta.length > 0) {
+                var medicamento = [];
+                var contador = [];
+                var colores = [];
+                for (var i = 0; i < respuesta.length; i++) {
+                    contador.push(respuesta[i][1]);
+                    medicamento.push(respuesta[i][0]);
+                    colores.push(colorRGB());
+                }
+                $("canvas#graphDashMV1").remove();
+                $("div.rmv1").append('<canvas id="graphDashMV1" width="400" height="400"></canvas>');
+                var ctx2 = document.getElementById("graphDashMV1").getContext("2d");
+                var donutData = {
+                    labels: medicamento,
+                    datasets: [
+                        {
+                            label: '# Ventas',
+                            data: contador,
+                            backgroundColor: colores,
+                            borderColor: colores
+                        }
+                    ]
+                }
+                var donutOptions = {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'left',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Top 10 Medicamentos más vendidos'
+                        },
+                        datalabels: {
+                            formatter: (value, context) => {
+                                return value;
+                            },
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14,
+                            }
+                        }
+                    }
+                }
+                new Chart(ctx2, {
+                    type: 'pie',
+                    plugins: [ChartDataLabels],
+                    data: donutData,
+                    options: donutOptions
+                });
+            }
+            else {
+                $("canvas#graphDashMV1").remove();
+                $("div.rmv1").append('<canvas id="graphDashMV1" width="400" height="400"></canvas>');
+                var ctx2 = document.getElementById("graphDashMV1").getContext("2d");
+                var donutData = {
+                    labels: ['SIN DATOS'],
+                    datasets: [
+                        {
+                            label: '# Ventas',
+                            data: [0],
+                            backgroundColor: colores,
+                            borderColor: colores
+                        }
+                    ]
+                }
+                var donutOptions = {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Top 10 Medicamentos más vendidos'
+                        }
+                    },
+                }
+                new Chart(ctx2, {
+                    type: 'pie',
+                    data: donutData,
+                    options: donutOptions
+                });
+            }
+        },
+    });
+
+}
 function VerTop10MedicamentosMas() {
     var dashD1 = 1;
     var datos = new FormData();

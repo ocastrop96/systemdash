@@ -24,14 +24,14 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3 id="oneCount"></h3>
 
-                            <p>Atenciones por Consulta Externa</p>
+                            <p>Consulta Externa :. Total Atendidos</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="fas fa-hospital-user"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+
                     </div>
                 </div>
                 <!-- ./col -->
@@ -39,14 +39,15 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>160</h3>
+                            <h3 id="twoCount"></h3>
 
-                            <p>Atenciones por Emergencia</p>
+                            <p>Emergencia :. Total Atendidos</p>
+
                         </div>
                         <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <i class="fas fa-ambulance"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+
                     </div>
                 </div>
                 <!-- ./col -->
@@ -54,20 +55,62 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>170</h3>
+                            <h3 id="threeCount"></h3>
 
-                            <p>Atenciones en Hospitalización</p>
+                            <p>Hospitalización :. Total Atendidos</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person-add"></i>
+                            <i class="fas fa-clinic-medical"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Más info <i class="fas fa-arrow-circle-right"></i></a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-gray">
+                        <div class="inner">
+                            <h3 id="fourCount"></h3>
+
+                            <p>Pacientes Hospitalizados</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-primary">
+                        <div class="inner">
+                            <h3 id="fiveCount"></h3>
+
+                            <p>Pacientes en Emergencia</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-first-aid"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-teal">
+                        <div class="inner">
+                            <h3 id="sixCount"></h3>
+                            <p>Camas Libres</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card card-gray">
+                    <div class="card card-danger">
                         <div class="card-header">
                             <h3 class="card-title font-weight-bold"> Dashboard Atenciones</h3>
                         </div>

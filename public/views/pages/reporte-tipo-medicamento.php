@@ -14,15 +14,24 @@
             </div>
         </div>
     </section>
-    <!-- <section class="content">
+    <section class="content">
         <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Filtros &nbsp;<i class="fas fa-filter"></i></h3>
+                <div class="card-tools">
+                    <a href="public/views/reports/ReporteFarmacia.php?reporte=reporte" class="rptControl">
+                        <button type="btn" class="btn bg-success" id="btnRptControl"><i class="fas fa-file-excel"></i>&nbsp; Exportar Saldos
+                        </button>
+                    </a>
+                </div>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                         <div class="form-group">
                             <label>Seleccione Trim (Opc):</label>
                             <div class="input-group">
-                                <select class="form-control dshTipTrimestre2" name="dshTipTrimestre2" id="dshTipTrimestre2">
+                                <select class="form-control dshTipTrimestre3" name="dshTipTrimestre3" id="dshTipTrimestre3">
                                     <?php
                                     date_default_timezone_set('America/Lima');
                                     $mes2 = date("m");
@@ -81,7 +90,7 @@
                         <div class="form-group">
                             <label class="text-light">.</label>
                             <div class="input-group">
-                                <button type="btn" class="btn bg-info pull-right" id="deshacer-filtro-DashQX3"><i class="fas fa-broom"></i>
+                                <button type="btn" class="btn bg-success pull-right" id="deshacer-filtro-DashQX3"><i class="fas fa-broom"></i>
                                 </button>
                             </div>
                         </div>
@@ -99,25 +108,33 @@
                 </div>
             </div>
         </div>
-    </section> -->
-
-    <section class="content">
-        <div class="row ml-1">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
-                <div class="form-group">
-                    <label class="text-light">.</label>
-                    <div class="input-group">
-                        <a href="public/views/reports/ReporteFarmacia.php?reporte=reporte" class="rptControl">
-                            <button type="btn" class="btn bg-success" id="btnRptControl"><i class="fas fa-file-excel"></i>&nbsp; Exportar Saldos
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
     <section class="content">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h3 class="card-title font-weight-bold"> 10 Medicamentos más vendidos</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart rmv1">
+                                <canvas id="graphDashMV1" width="400" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="card card-success">
