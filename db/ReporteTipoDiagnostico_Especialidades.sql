@@ -1,4 +1,4 @@
-ALTER PROCEDURE ReporteTipoDiagnostico_Especialidades
+CREATE PROCEDURE ReporteTipoDiagnostico_Especialidades
 @fechaini date,
 @fechafin date,
 @IdTipoSErvicio int,
