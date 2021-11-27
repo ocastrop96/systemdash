@@ -178,11 +178,12 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
                     mes.push(respuesta[i][1]);
                     colores.push(colorRGB());
 
+                    let numeroSet = Number(respuesta[i][0]).toLocaleString('en-US');
                     $("#cuerpoTab31").append(
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
-                        '<td>' + respuesta[i][0] + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '<td>' + numeroSet + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
                         '</tr>'
                     );
                 }
@@ -194,7 +195,7 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
                 const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
 
                 const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
-                $("#totalTab31").html(totalValueAcum);
+                $("#totalTab31").html(totalValueAcum.toLocaleString('en-US'));
                 $("#totalTab3Porcen1").html(percentageValue + "%");
 
 
@@ -267,12 +268,13 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
                         },
                         datalabels: {
                             formatter: (value, context) => {
-                                return value;
+                                const valoracion = Number(value).toLocaleString('en-US');
+                                return valoracion;
                             },
                             color: '#fff',
                             font: {
                                 weight: 'bold',
-                                size: 14,
+                                size: 12,
                             }
                         }
 
@@ -381,12 +383,13 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                     especialidad.push(respuesta[i][1]);
                     contador.push(respuesta[i][0]);
                     colores.push(colorRGB());
+                    let numeroSet = Number(respuesta[i][0]).toLocaleString('en-US');
 
                     $("#cuerpoTab32").append(
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
-                        '<td>' + respuesta[i][0] + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '<td>' + numeroSet + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
                         '</tr>'
                     );
 
@@ -399,7 +402,7 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                 const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
 
                 const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
-                $("#totalTab32").html(totalValueAcum);
+                $("#totalTab32").html(totalValueAcum.toLocaleString('en-US'));
                 $("#totalTab3Porcen2").html(percentageValue + "%");
 
                 $("canvas#graphDash2").remove();
@@ -434,7 +437,7 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                             color: '#fff',
                             font: {
                                 weight: 'bold',
-                                size: 14,
+                                size: 12,
                             }
                         }
                     }
@@ -542,12 +545,13 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                     iafa.push(respuesta[i][1]);
                     contador.push(respuesta[i][0]);
                     colores.push(colorRGB());
+                    let numeroSet = Number(respuesta[i][0]).toLocaleString('en-US');
 
                     $("#cuerpoTab3").append(
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
-                        '<td>' + respuesta[i][0] + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '<td>' + numeroSet + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
                         '</tr>'
                     );
                 }
@@ -562,7 +566,7 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                 const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
 
                 const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
-                $("#totalTab3").html(totalValueAcum);
+                $("#totalTab3").html(totalValueAcum.toLocaleString('en-US'));
                 $("#totalTab3Porcen").html(percentageValue + "%");
 
                 var ctx = document.getElementById("graphDash3").getContext("2d");
@@ -622,7 +626,7 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                         //     color: '#fff',
                         //     font: {
                         //         weight: 'bold',
-                        //         size: 14,
+                        //         size: 12,
                         //     }
                         // }
                     }

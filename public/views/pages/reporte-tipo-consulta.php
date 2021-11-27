@@ -49,10 +49,10 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                         <div class="form-group">
-                            <label>Seleccione Tip. Ingreso:</label>
+                            <label>Tipo de Ingreso:</label>
                             <div class="input-group">
                                 <select class="form-control dshTipIng1" name="dshTipIng1" id="dshTipIng1">
-                                    <option value="0">-------------TODAS--------------</option>
+                                    <option value="0">---------TODAS-----------</option>
                                     <?php
                                     $tipoIngreso = ReportesControlador::ctrListarTipoIngreso();
                                     foreach ($tipoIngreso as $key => $value) {
@@ -65,17 +65,17 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                         <div class="form-group">
-                            <label>Selecciona Especialidad:</label>
+                            <label>Especialidad:</label>
                             <div class="input-group">
                                 <select class="form-control" name="dshEspecialidad" id="dshEspecialidad">
-                                    <option value="0">--------------------------TODAS---------------------------</option>
+                                    <option value="0">---------------TODAS------------------</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                         <div class="form-group">
-                            <label>Selecciona IAFA:</label>
+                            <label>IAFA:</label>
                             <div class="input-group">
                                 <select class="form-control" name="dshIAFA" id="dshIAFA">
                                     <option value="0">-------------TODAS--------------</option>

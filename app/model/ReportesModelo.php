@@ -2,6 +2,7 @@
 require_once "MSdb.php";
 class ReportesModelo
 {
+    // Filtros
     static public function mdlListarEspecialidades()
     {
         $stmt = ConexionConsulta::conectar()->prepare("SELECT
@@ -80,6 +81,9 @@ class ReportesModelo
         $stmt->close();
         $stmt = null;
     }
+    // Filtros
+
+    // Graficos Consulta Externa
     static public function mdlListarMeses($inicio, $fin, $especialidad, $iafa, $doc)
     {
         $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoConsulta_Graf_Meses @FechaIni = :FechaIni, @FechaFin = :FechaFin, @FF = :FF, @IdEspecialidad = :IdEspecialidad, @NroDocumento = :NroDocumento");
@@ -122,6 +126,10 @@ class ReportesModelo
         $stmt->close();
         $stmt = null;
     }
+
+    // Graficos Consulta Externa
+
+     // Graficos Diagnosticos
 
     static public function mdlListarDiagnosxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico)
     {
@@ -167,7 +175,9 @@ class ReportesModelo
         $stmt->close();
         $stmt = null;
     }
+     // Graficos Diagnosticos
 
+    // Graficos Medicamentos
     static public function mdlListarMedicaTop10Mas()
     {
         $stmt = ConexionConsulta::conectar()->prepare("SELECT TOP
@@ -257,6 +267,17 @@ class ReportesModelo
         $stmt->close();
         $stmt = null;
     }
+    static public function mdlListarMedicaTop10MasVendidos($inicio, $fin)
+    {
+        $stmt = ConexionConsulta::conectar()->prepare("exec TotalesMedicamentos @fini = :inicio,@ffin = :fin");
+        $stmt->bindParam(":inicio", $inicio, PDO::PARAM_STR);
+        $stmt->bindParam(":fin", $fin, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+        $stmt->close();
+        $stmt = null;
+    }
+    // Graficos Medicamentos
 
     static public function mdlListarContadoresWidget($opcion)
     {
@@ -265,17 +286,6 @@ class ReportesModelo
         $stmt->bindParam(":op", $opcion, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch();
-        $stmt->close();
-        $stmt = null;
-    }
-
-    static public function mdlListarMedicaTop10MasVendidos($inicio, $fin)
-    {
-        $stmt = ConexionConsulta::conectar()->prepare("exec TotalesMedicamentos @fini = :inicio,@ffin = :fin");
-        $stmt->bindParam(":inicio", $inicio, PDO::PARAM_STR);
-        $stmt->bindParam(":fin", $fin, PDO::PARAM_STR);
-        $stmt->execute();
-        return $stmt->fetchAll();
         $stmt->close();
         $stmt = null;
     }

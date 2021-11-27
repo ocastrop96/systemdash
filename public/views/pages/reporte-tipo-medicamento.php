@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                         <div class="form-group">
-                            <label>Seleccione Trim (Opc):</label>
+                            <label>Trim (Opc):</label>
                             <div class="input-group">
                                 <select class="form-control dshTipTrimestre3" name="dshTipTrimestre3" id="dshTipTrimestre3">
                                     <?php
@@ -122,8 +122,8 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
                     <div class="card card-warning">
                         <div class="card-header">
                             <h3 class="card-title font-weight-bold"> 10 Medicamentos más vendidos - <span id="trimestre_añoPV"></span></h3>
@@ -141,9 +141,29 @@
                                 <canvas id="graphDashMV1" width="400" height="400"></canvas>
                             </div>
                         </div>
+                        <div class="card-body table-responsive p-0" id="tabgraphDashMD1">
+                            <table class="table table-striped table-valign-middle" id="tabDetalleMedica1">
+                                <thead>
+                                    <tr>
+                                        <th>Insumo médico</th>
+                                        <th>Cantidad</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTabMedica1">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th id="totalTabMesMedica1"></th>
+                                        <th id="totalTabMesMedica1Porcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-2"></div>
             </div>
             <div class="row">
                 <div class="col-md-6">
@@ -164,6 +184,26 @@
                                 <canvas id="graphDashM1" width="100" height="100"></canvas>
                             </div>
                         </div>
+                        <div class="card-body table-responsive p-0" id="tabgraphDashMD2">
+                            <table class="table table-striped table-valign-middle" id="tabDetalleMedica2">
+                                <thead>
+                                    <tr>
+                                        <th>Insumo médico</th>
+                                        <th>Cantidad</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTabMedica2">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th id="totalTabMesMedica2"></th>
+                                        <th id="totalTabMesMedica2Porcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -181,6 +221,26 @@
                         </div>
                         <div class="card-body rm2">
                             <canvas id="graphDashM2" width="400" height="400"></canvas>
+                        </div>
+                        <div class="card-body table-responsive p-0" id="tabgraphDashMD3">
+                            <table class="table table-striped table-valign-middle" id="tabDetalleMedica3">
+                                <thead>
+                                    <tr>
+                                        <th>Insumo médico</th>
+                                        <th>Cantidad</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTabMedica3">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th id="totalTabMesMedica3"></th>
+                                        <th id="totalTabMesMedica3Porcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -204,6 +264,26 @@
                                 <canvas id="graphDashM3" width="400" height="400"></canvas>
                             </div>
                         </div>
+                        <div class="card-body table-responsive p-0" id="tabgraphDashMD4">
+                            <table class="table table-striped table-valign-middle" id="tabDetalleMedica4">
+                                <thead>
+                                    <tr>
+                                        <th>Insumo médico</th>
+                                        <th>Cantidad</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTabMedica4">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th id="totalTabMesMedica4"></th>
+                                        <th id="totalTabMesMedica4Porcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -221,6 +301,26 @@
                         </div>
                         <div class="card-body rm4">
                             <canvas id="graphDashM4" width="400" height="400"></canvas>
+                        </div>
+                        <div class="card-body table-responsive p-0" id="tabgraphDashMD5">
+                            <table class="table table-striped table-valign-middle" id="tabDetalleMedica5">
+                                <thead>
+                                    <tr>
+                                        <th>Insumo médico</th>
+                                        <th>Cantidad</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cuerpoTabMedica5">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>TOTAL</th>
+                                        <th id="totalTabMesMedica5"></th>
+                                        <th id="totalTabMesMedica5Porcen"></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>

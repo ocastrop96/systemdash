@@ -1,6 +1,7 @@
 <?php
 class ReportesControlador
 {
+    // Filtros
     static public function ctrListarEspecialidades()
     {
         $rptListProf = ReportesModelo::mdlListarEspecialidades();
@@ -30,6 +31,10 @@ class ReportesControlador
         $rptListProf = ReportesModelo::mdlListarServicioxEspec($tipoE);
         return $rptListProf;
     }
+
+    // Filtros
+
+    // Gráficos Consulta Externa
     static public function ctrListarMesesDash($inicio, $fin, $especialidad, $iafa, $doc)
     {
         $rptListGrafMonth = ReportesModelo::mdlListarMeses($inicio, $fin, $especialidad, $iafa, $doc);
@@ -46,7 +51,9 @@ class ReportesControlador
         $rptListGrafEspeci = ReportesModelo::mdlListarIAFASD($inicio, $fin, $especialidad, $iafa, $doc);
         return $rptListGrafEspeci;
     }
+    // Gráficos Consulta Externa
 
+    // Gráficos Diagnósticos
     static public function ctrListarDiagnosticoxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico)
     {
         $rptListGrafEspeci = ReportesModelo::mdlListarDiagnosxMeses($inicio, $fin, $diagnostico, $tipoIngreso, $especialidad, $servicio, $medico);
@@ -63,42 +70,10 @@ class ReportesControlador
         $rptListGrafEspeci = ReportesModelo::mdlListarDiagnosTop10($inicio, $fin);
         return $rptListGrafEspeci;
     }
+    // Gráficos Diagnósticos
 
-    static public function ctrListarMedicamentosTop10Mas()
-    {
-        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10Mas();
-        return $rptListGrafEspeci;
-    }
-
-    static public function ctrListarMedicamentosTop10MasQX()
-    {
-        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasQX();
-        return $rptListGrafEspeci;
-    }
-
-    static public function ctrListarMedicamentosTop10Menos()
-    {
-        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10Menos();
-        return $rptListGrafEspeci;
-    }
-
-    static public function ctrListarMedicamentosTop10MenosQX()
-    {
-        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MenosQX();
-        return $rptListGrafEspeci;
-    }
-
-    static public function ctrListarMedicamentosTop10MasVendidos($inicio, $fin)
-    {
-        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasVendidos($inicio, $fin);
-        return $rptListGrafEspeci;
-    }
-
-    static public function ctrListarContadoresWidget($opcion)
-    {
-        $rptListGrafEspeci = ReportesModelo::mdlListarContadoresWidget($opcion);
-        return $rptListGrafEspeci;
-    }
+    // Gráficos Medicamentos
+    
     static public function ctrReporteControlFarmacia()
     {
         if (isset($_GET["reporte"])) {
@@ -130,5 +105,42 @@ class ReportesControlador
             }
             echo "</table>";
         }
+    }
+
+    static public function ctrListarMedicamentosTop10MasVendidos($inicio, $fin)
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasVendidos($inicio, $fin);
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarMedicamentosTop10Mas()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10Mas();
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarMedicamentosTop10MasQX()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MasQX();
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarMedicamentosTop10Menos()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10Menos();
+        return $rptListGrafEspeci;
+    }
+
+    static public function ctrListarMedicamentosTop10MenosQX()
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarMedicaTop10MenosQX();
+        return $rptListGrafEspeci;
+    }
+    // Gráficos Medicamentos
+
+    static public function ctrListarContadoresWidget($opcion)
+    {
+        $rptListGrafEspeci = ReportesModelo::mdlListarContadoresWidget($opcion);
+        return $rptListGrafEspeci;
     }
 }

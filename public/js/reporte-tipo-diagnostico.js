@@ -429,12 +429,13 @@ function VerDiagnosticosxMeses(dInicio, dFin, dDiagnostico, dTipoIngreso, dEspec
                     contador.push(respuesta[i][0]);
                     mes.push(respuesta[i][1]);
                     colores.push(colorRGB());
+                    let numeroSet = Number(respuesta[i][0]).toLocaleString('en-US');
 
                     $("#cuerpoTabMesDiag").append(
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
-                        '<td>' + respuesta[i][0] + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '<td>' + numeroSet + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
                         '</tr>'
                     );
 
@@ -446,7 +447,7 @@ function VerDiagnosticosxMeses(dInicio, dFin, dDiagnostico, dTipoIngreso, dEspec
                 const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
 
                 const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
-                $("#totalTabMesDiag").html(totalValueAcum);
+                $("#totalTabMesDiag").html(totalValueAcum.toLocaleString('en-US'));
                 $("#totalTabMesDiagPorcen").html(percentageValue + "%");
 
                 $("canvas#graphDashD1").remove();
@@ -619,12 +620,13 @@ function VerDiagnosticosxEspecialidad(dInicio, dFin, dDiagnostico, dTipoIngreso,
                     contador.push(respuesta[i][0]);
                     especialidad.push(respuesta[i][2]);
                     colores.push(colorRGB());
+                    let numeroSet = Number(respuesta[i][0]).toLocaleString('en-US');
 
                     $("#cuerpoTabEspDiag").append(
                         ' <tr>' +
                         '<td>' + respuesta[i][2] + '</td>' +
-                        '<td>' + respuesta[i][0] + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '<td>' + numeroSet + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
                         '</tr>'
                     );
                 }
@@ -636,7 +638,7 @@ function VerDiagnosticosxEspecialidad(dInicio, dFin, dDiagnostico, dTipoIngreso,
                 const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
 
                 const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
-                $("#totalTabEspDiag").html(totalValueAcum);
+                $("#totalTabEspDiag").html(totalValueAcum.toLocaleString('en-US'));
                 $("#totalTabEspDiagPorcen").html(percentageValue + "%");
 
                 $("canvas#graphDashD2").remove();
@@ -789,13 +791,13 @@ function VerDiagnosticosTop10(dInicio, dFin) {
                     diagnostico.push(respuesta[i][1]);
                     contador.push(respuesta[i][0]);
                     colores.push(colorRGB());
-
+                    let numeroSet = Number(respuesta[i][0]).toLocaleString('en-US');
                     $("#cuerpoTab10Diag").append(
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
                         '<td>' + respuesta[i][2] + '</td>' +
-                        '<td>' + respuesta[i][0] + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(3) + ' %</td>' +
+                        '<td>' + numeroSet + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
                         '</tr>'
                     );
                 }
@@ -807,7 +809,7 @@ function VerDiagnosticosTop10(dInicio, dFin) {
                 const totalValueAcum = contadoresAcum.reduce(totalSum, 0);
 
                 const percentageValue = (totalValueAcum / totalValueAcum * 100).toFixed(1);
-                $("#totalTab10Diag").html(totalValueAcum);
+                $("#totalTab10Diag").html(totalValueAcum.toLocaleString('en-US'));
                 $("#totalTab10DiagPorcen").html(percentageValue + "%");
 
 

@@ -1,12 +1,12 @@
-CargarWidgetsContadores("oneCount",1)
-CargarWidgetsContadores("twoCount",2)
-CargarWidgetsContadores("threeCount",3)
-CargarWidgetsContadores("fourCount",5)
-CargarWidgetsContadores("fiveCount",6)
-CargarWidgetsContadores("sixCount",7)
+CargarWidgetsContadores("oneCount", 1)
+CargarWidgetsContadores("twoCount", 2)
+CargarWidgetsContadores("threeCount", 3)
+CargarWidgetsContadores("fourCount", 5)
+CargarWidgetsContadores("fiveCount", 6)
+CargarWidgetsContadores("sixCount", 7)
 
 
-function CargarWidgetsContadores(widget,op) {
+function CargarWidgetsContadores(widget, op) {
     var datos = new FormData();
     datos.append("opcion", op);
 
@@ -19,7 +19,8 @@ function CargarWidgetsContadores(widget,op) {
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-            $("#"+widget+"").html(respuesta["contador"]);
+            let valor = Number(respuesta["contador"]).toLocaleString('en-US');
+            $("#" + widget + "").html(valor);
         },
     });
 }

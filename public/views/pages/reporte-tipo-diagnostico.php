@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                         <div class="form-group">
-                            <label>Seleccione Trimestre (Opc):</label>
+                            <label>Trimestre (Opc):</label>
                             <div class="input-group">
                                 <select class="form-control dshTipTrimestre" name="dshTipTrimestre" id="dshTipTrimestre">
                                     <?php
@@ -114,7 +114,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                         <div class="form-group">
-                            <label>Seleccione Tip. Ingreso:</label>
+                            <label>Tipo de Ingreso:</label>
                             <div class="input-group">
                                 <select class="form-control dshTipIng" name="dshTipIng" id="dshTipIng">
                                     <option value="0">-------------TODAS--------------</option>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="form-group">
-                            <label>Selecciona Especialidad:</label>
+                            <label>Especialidad:</label>
                             <div class="input-group">
                                 <select class="form-control dshEspecialidad2" name="dshEspecialidad2" id="dshEspecialidad2">
                                     <option value="0">Seleccione Tipo. Ingreso</option>
@@ -141,7 +141,7 @@
 
                     <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
                         <div class="form-group">
-                            <label>Selecciona Servicio:</label>
+                            <label>Servicio:</label>
                             <div class="input-group">
                                 <select class="form-control dshServicio" name="dshServicio" id="dshServicio">
                                     <option value="0">Seleccione Especialidad</option>
@@ -168,8 +168,8 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3 d-xs-none"></div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="col-md-1 d-xs-none"></div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
                     <div class="card card-danger">
                         <div class="card-header">
                             <h3 class="card-title font-weight-bold"> Top 10 Diagnósticos - <span id="trimestre_año2"></span></h3>
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-xs-none"></div>
+                <div class="col-md-1 d-xs-none"></div>
             </div>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -239,8 +239,7 @@
                                     <thead>
                                         <tr>
                                             <th>Mes</th>
-                                            <th>N° Frecuencia
-                                            </th>
+                                            <th>N° Frecuencia</th>
                                             <th>%</th>
                                         </tr>
                                     </thead>
