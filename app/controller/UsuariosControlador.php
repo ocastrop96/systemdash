@@ -19,7 +19,7 @@ class UsuariosControlador
                 $dni = $_POST["passQX"];
 
                 $logueoBD = UsuariosModelo::mdlLogueoUsuario($usuario, $dni);
-                if ($logueoBD["Usuario"] == $usuario && $logueoBD["DNI"] == $dni) {
+                if ($logueoBD["Usuario"] == $usuario && $logueoBD["Usuario"] == $dni) {
                     $_SESSION["loginQXSystem"] = "ok";
                     $_SESSION["loginDNIC"] = $logueoBD["DNI"];
                     $_SESSION["loginUser"] = $logueoBD["Usuario"];
