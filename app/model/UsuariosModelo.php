@@ -27,8 +27,8 @@ class UsuariosModelo
     static public function mdlLogueoUsuario($usuario, $dni)
     {
         $stmt = ConexionConsulta::conectar()->prepare("SELECT
-        Empleados.DNI,
-	    Empleados.Usuario,
+        RTRIM( Empleados.DNI ) AS DNI,
+	    Usuario,
         Empleados.Nombres,
         Empleados.ApellidoPaterno,
         Empleados.ApellidoMaterno 
