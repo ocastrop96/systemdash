@@ -4,9 +4,9 @@ class ConexionConsulta
     static public function conectar()
     {
         $link = new PDO(
-            'sqlsrv:Server=KILLASISA;Database=SIGH',
+            'sqlsrv:Server=192.168.32.123;Database=SIGH',
             'sa',
-            '123456'
+            'Heves.2016'
             // 'sqlsrv:Server=OPTIMUS;Database=SIGH',
             // 'sa',
             // 'Sistemas2021+-+'
