@@ -435,7 +435,7 @@ function VerDiagnosticosxMeses(dInicio, dFin, dDiagnostico, dTipoIngreso, dEspec
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
 
@@ -626,7 +626,7 @@ function VerDiagnosticosxEspecialidad(dInicio, dFin, dDiagnostico, dTipoIngreso,
                         ' <tr>' +
                         '<td>' + respuesta[i][2] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }
@@ -797,7 +797,7 @@ function VerDiagnosticosTop10(dInicio, dFin) {
                         '<td>' + respuesta[i][1] + '</td>' +
                         '<td>' + respuesta[i][2] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }

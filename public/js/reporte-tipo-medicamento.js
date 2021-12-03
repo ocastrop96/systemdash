@@ -209,7 +209,7 @@ function VerTop10MedicamentosMasVendidos(dInicioPV, dFinPV) {
                         ' <tr>' +
                         '<td>' + respuesta[i][0] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }
@@ -344,7 +344,7 @@ function VerTop10MedicamentosMas() {
                         ' <tr>' +
                         '<td>' + respuesta[i][0] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }
@@ -504,7 +504,7 @@ function VerTop10MedicamentosMasQX() {
                         ' <tr>' +
                         '<td>' + respuesta[i][0] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }
@@ -662,8 +662,8 @@ function VerTop10MedicamentosMenos() {
                     $("#cuerpoTabMedica4").append(
                         ' <tr>' +
                         '<td>' + respuesta[i][0] + '</td>' +
-                        '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td style="width: 10px">' + numeroSet + '</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }
@@ -823,7 +823,7 @@ function VerTop10MedicamentosMenosQX() {
                         ' <tr>' +
                         '<td>' + respuesta[i][0] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][1]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }

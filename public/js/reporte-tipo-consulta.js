@@ -183,7 +183,7 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }
@@ -389,7 +389,7 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
 
@@ -551,7 +551,7 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
                         ' <tr>' +
                         '<td>' + respuesta[i][1] + '</td>' +
                         '<td>' + numeroSet + '</td>' +
-                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + ' %</td>' +
+                        '<td class="font-weight-bold">' + (Number(respuesta[i][0]) / suma * 100).toFixed(2) + '%</td>' +
                         '</tr>'
                     );
                 }
