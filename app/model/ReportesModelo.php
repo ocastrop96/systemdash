@@ -84,10 +84,11 @@ class ReportesModelo
     // Filtros
 
     // Graficos Consulta Externa
-    static public function mdlListarMeses($inicio, $fin, $especialidad, $iafa, $doc)
+    static public function mdlListarMeses($inicio, $fin, $especialidad, $iafa, $doc,$estado)
     {
-        $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoConsulta_Graf_Meses @FechaIni = :FechaIni, @FechaFin = :FechaFin, @FF = :FF, @IdEspecialidad = :IdEspecialidad, @NroDocumento = :NroDocumento");
+        $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoConsulta_Graf_Meses @FechaIni = :FechaIni, @FechaFin = :FechaFin, @FF = :FF, @IdEspecialidad = :IdEspecialidad, @NroDocumento = :NroDocumento,@Estado = :Estado");
         $stmt->bindParam(":IdEspecialidad", $especialidad, PDO::PARAM_INT);
+        $stmt->bindParam(":Estado", $estado, PDO::PARAM_INT);
         $stmt->bindParam(":FF", $iafa, PDO::PARAM_INT);
         $stmt->bindParam(":FechaIni", $inicio, PDO::PARAM_STR);
         $stmt->bindParam(":FechaFin", $fin, PDO::PARAM_STR);
@@ -99,10 +100,11 @@ class ReportesModelo
     }
 
 
-    static public function mdlListarEspecialiadesD($inicio, $fin, $especialidad, $iafa, $doc)
+    static public function mdlListarEspecialiadesD($inicio, $fin, $especialidad, $iafa, $doc,$estado)
     {
-        $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoConsulta_Graf_Especialidades @FechaIni = :FechaIni, @FechaFin = :FechaFin, @FF = :FF, @IdEspecialidad = :IdEspecialidad, @NroDocumento = :NroDocumento");
+        $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoConsulta_Graf_Especialidades @FechaIni = :FechaIni, @FechaFin = :FechaFin, @FF = :FF, @IdEspecialidad = :IdEspecialidad, @NroDocumento = :NroDocumento,@Estado = :Estado");
         $stmt->bindParam(":IdEspecialidad", $especialidad, PDO::PARAM_INT);
+        $stmt->bindParam(":Estado", $estado, PDO::PARAM_INT);
         $stmt->bindParam(":FF", $iafa, PDO::PARAM_INT);
         $stmt->bindParam(":FechaIni", $inicio, PDO::PARAM_STR);
         $stmt->bindParam(":FechaFin", $fin, PDO::PARAM_STR);
@@ -113,10 +115,11 @@ class ReportesModelo
         $stmt = null;
     }
 
-    static public function mdlListarIAFASD($inicio, $fin, $especialidad, $iafa, $doc)
+    static public function mdlListarIAFASD($inicio, $fin, $especialidad, $iafa, $doc,$estado)
     {
-        $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoConsulta_Graf_IAFAS @FechaIni = :FechaIni, @FechaFin = :FechaFin, @FF = :FF, @IdEspecialidad = :IdEspecialidad, @NroDocumento = :NroDocumento");
+        $stmt = ConexionConsulta::conectar()->prepare("exec ReporteTipoConsulta_Graf_IAFAS @FechaIni = :FechaIni, @FechaFin = :FechaFin, @FF = :FF, @IdEspecialidad = :IdEspecialidad, @NroDocumento = :NroDocumento,@Estado = :Estado");
         $stmt->bindParam(":IdEspecialidad", $especialidad, PDO::PARAM_INT);
+        $stmt->bindParam(":Estado", $estado, PDO::PARAM_INT);
         $stmt->bindParam(":FF", $iafa, PDO::PARAM_INT);
         $stmt->bindParam(":FechaIni", $inicio, PDO::PARAM_STR);
         $stmt->bindParam(":FechaFin", $fin, PDO::PARAM_STR);

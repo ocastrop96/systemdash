@@ -35,20 +35,20 @@ class ReportesControlador
     // Filtros
 
     // Gráficos Consulta Externa
-    static public function ctrListarMesesDash($inicio, $fin, $especialidad, $iafa, $doc)
+    static public function ctrListarMesesDash($inicio, $fin, $especialidad, $iafa, $doc, $estado)
     {
-        $rptListGrafMonth = ReportesModelo::mdlListarMeses($inicio, $fin, $especialidad, $iafa, $doc);
+        $rptListGrafMonth = ReportesModelo::mdlListarMeses($inicio, $fin, $especialidad, $iafa, $doc, $estado);
         return $rptListGrafMonth;
     }
 
-    static public function ctrListarEspecialidadesDash($inicio, $fin, $especialidad, $iafa, $doc)
+    static public function ctrListarEspecialidadesDash($inicio, $fin, $especialidad, $iafa, $doc, $estado)
     {
-        $rptListGrafEspeci = ReportesModelo::mdlListarEspecialiadesD($inicio, $fin, $especialidad, $iafa, $doc);
+        $rptListGrafEspeci = ReportesModelo::mdlListarEspecialiadesD($inicio, $fin, $especialidad, $iafa, $doc, $estado);
         return $rptListGrafEspeci;
     }
-    static public function ctrListarIAFASDash($inicio, $fin, $especialidad, $iafa, $doc)
+    static public function ctrListarIAFASDash($inicio, $fin, $especialidad, $iafa, $doc, $estado)
     {
-        $rptListGrafEspeci = ReportesModelo::mdlListarIAFASD($inicio, $fin, $especialidad, $iafa, $doc);
+        $rptListGrafEspeci = ReportesModelo::mdlListarIAFASD($inicio, $fin, $especialidad, $iafa, $doc, $estado);
         return $rptListGrafEspeci;
     }
     // Gráficos Consulta Externa
@@ -73,7 +73,7 @@ class ReportesControlador
     // Gráficos Diagnósticos
 
     // Gráficos Medicamentos
-    
+
     static public function ctrReporteControlFarmacia()
     {
         if (isset($_GET["reporte"])) {

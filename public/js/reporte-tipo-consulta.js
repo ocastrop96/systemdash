@@ -1,6 +1,6 @@
-CargarAtencionesxMes($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
-CargarAtencionesxEspecialidad($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
-CargarAtencionesxIAFAS($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '');
+CargarAtencionesxMes($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '', 2);
+CargarAtencionesxEspecialidad($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '', 2);
+CargarAtencionesxIAFAS($("#rango-dsh").attr("inicio"), $("#rango-dsh").attr("fin"), 0, 0, '', 2);
 
 $("#anioDash").datepicker({
     'format': "yyyy",
@@ -51,14 +51,13 @@ $("input[name='rango-dsh']").daterangepicker({
     let especialidad = $("#dshEspecialidad").val();
     let iafa = $("#dshIAFA").val();
     let ndoc = $("#pacienteQX").val();
-
-
+    let Estado = $("#cmboAtendidos").val();
 
     $("#rango-dsh").attr("inicio", inicio);
     $("#rango-dsh").attr("fin", fin);
-    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc, Estado);
     limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
     limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
     limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
@@ -70,9 +69,11 @@ $("#dshTipIng1").on("change", function () {
     let especialidad = 0;
     let iafa = $("#dshIAFA").val();
     let ndoc = $("#pacienteQX").val();
-    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    let Estado = $("#cmboAtendidos").val();
+
+    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc, Estado);
     limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
     limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
     limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
@@ -83,13 +84,14 @@ $("#dshEspecialidad").on("change", function () {
     let especialidad = $(this).val();
     let iafa = $("#dshIAFA").val();
     let ndoc = $("#pacienteQX").val();
-    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    let Estado = $("#cmboAtendidos").val();
+
+    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc, Estado);
     limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
     limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
     limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
-
 
 });
 
@@ -99,9 +101,11 @@ $("#dshIAFA").on("change", function () {
     let especialidad = $("#dshEspecialidad").val();
     let iafa = $(this).val();
     let ndoc = $("#pacienteQX").val();
-    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    let Estado = $("#cmboAtendidos").val();
+
+    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc, Estado);
     limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
     limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
     limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
@@ -114,9 +118,28 @@ $("#pacienteQX").on("change", function () {
     let especialidad = $("#dshEspecialidad").val();
     let iafa = $("#dshIAFA").val();
     let ndoc = $(this).val();
-    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc);
-    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc);
+    let Estado = $("#cmboAtendidos").val();
+
+    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc, Estado);
+    limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
+    limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
+    limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
+
+});
+
+$("#cmboAtendidos").on("change", function () {
+    let inicio = $("#rango-dsh").attr("inicio");
+    let fin = $("#rango-dsh").attr("fin");
+    let especialidad = $("#dshEspecialidad").val();
+    let iafa = $("#dshIAFA").val();
+    let ndoc = $("#pacienteQX").val();
+    let Estado = $(this).val();
+
+    CargarAtencionesxMes(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxEspecialidad(inicio, fin, especialidad, iafa, ndoc, Estado);
+    CargarAtencionesxIAFAS(inicio, fin, especialidad, iafa, ndoc, Estado);
     limpiarTabla("tabDetalleIAFACons", "cuerpoTab3", "totalTab3", "totalTab3Porcen");
     limpiarTabla("tabDetalleMeses31", "cuerpoTab31", "totalTab31", "totalTab3Porcen1");
     limpiarTabla("tabDetalleEspecialidad32", "cuerpoTab32", "totalTab32", "totalTab3Porcen2");
@@ -143,7 +166,7 @@ $("#dshTipIng1").on("change", function () {
         $("#dshEspecialidad").html(errorhtml);
     }
 });
-function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
+function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc, Estado) {
     var valida = 1;
     var datos = new FormData();
 
@@ -153,6 +176,8 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
     datos.append("especialidad", Espec);
     datos.append("iafa", FF);
     datos.append("doc", NDoc);
+    datos.append("estado", Estado);
+
     $.ajax({
         url: "public/views/src/ajaxGraficos.php",
         method: "POST",
@@ -348,7 +373,7 @@ function CargarAtencionesxMes(Inic, Fin, Espec, FF, NDoc) {
     });
 }
 
-function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
+function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc, Estado) {
     var valida = 1;
     var datos = new FormData();
 
@@ -358,6 +383,8 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
     datos.append("especialidad2", Espec);
     datos.append("iafa2", FF);
     datos.append("doc2", NDoc);
+    datos.append("estado2", Estado);
+
 
     $.ajax({
         url: "public/views/src/ajaxGraficos.php",
@@ -512,7 +539,7 @@ function CargarAtencionesxEspecialidad(Inic, Fin, Espec, FF, NDoc) {
 
 }
 
-function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
+function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc, Estado) {
     var valida = 1;
     var datos = new FormData();
 
@@ -522,6 +549,8 @@ function CargarAtencionesxIAFAS(Inic, Fin, Espec, FF, NDoc) {
     datos.append("especialidad3", Espec);
     datos.append("iafa3", FF);
     datos.append("doc3", NDoc);
+    datos.append("estado3", Estado);
+
     $.ajax({
         url: "public/views/src/ajaxGraficos.php",
         method: "POST",

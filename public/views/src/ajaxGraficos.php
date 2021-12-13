@@ -43,6 +43,8 @@ class AjaxGraficos
     public $espec;
     public $iafa;
     public $doc;
+    public $estado;
+
     public function graficoMeses()
     {
         $Inic = $this->fIni;
@@ -50,8 +52,9 @@ class AjaxGraficos
         $Espec = $this->espec;
         $FF = $this->iafa;
         $NDoc = $this->doc;
+        $estado = $this->estado;
 
-        $respuesta = ReportesControlador::ctrListarMesesDash($Inic, $Fin, $Espec, $FF, $NDoc);
+        $respuesta = ReportesControlador::ctrListarMesesDash($Inic, $Fin, $Espec, $FF, $NDoc,$estado);
         echo json_encode($respuesta);
     }
 
@@ -60,6 +63,8 @@ class AjaxGraficos
     public $espec2;
     public $iafa2;
     public $doc2;
+    public $estado2;
+
     public function graficoEspecialidades()
     {
         $Inic = $this->fIni2;
@@ -67,8 +72,9 @@ class AjaxGraficos
         $Espec = $this->espec2;
         $FF = $this->iafa2;
         $NDoc = $this->doc2;
+        $estado = $this->estado2;
 
-        $respuesta = ReportesControlador::ctrListarEspecialidadesDash($Inic, $Fin, $Espec, $FF, $NDoc);
+        $respuesta = ReportesControlador::ctrListarEspecialidadesDash($Inic, $Fin, $Espec, $FF, $NDoc,$estado);
         echo json_encode($respuesta);
     }
 
@@ -77,6 +83,8 @@ class AjaxGraficos
     public $espec3;
     public $iafa3;
     public $doc3;
+    public $estado3;
+
     public function graficoIAFAS()
     {
         $Inic = $this->fIni3;
@@ -84,8 +92,9 @@ class AjaxGraficos
         $Espec = $this->espec3;
         $FF = $this->iafa3;
         $NDoc = $this->doc3;
+        $estado = $this->estado3;
 
-        $respuesta = ReportesControlador::ctrListarIAFASDash($Inic, $Fin, $Espec, $FF, $NDoc);
+        $respuesta = ReportesControlador::ctrListarIAFASDash($Inic, $Fin, $Espec, $FF, $NDoc,$estado);
         echo json_encode($respuesta);
     }
 
@@ -280,6 +289,8 @@ if (isset($_POST["dash1"])) {
     $list2->espec = $_POST["especialidad"];
     $list2->iafa = $_POST["iafa"];
     $list2->doc = $_POST["doc"];
+    $list2->estado = $_POST["estado"];
+
     $list2->graficoMeses();
 }
 
@@ -290,6 +301,7 @@ if (isset($_POST["dash2"])) {
     $list3->espec2 = $_POST["especialidad2"];
     $list3->iafa2 = $_POST["iafa2"];
     $list3->doc2 = $_POST["doc2"];
+    $list3->estado2 = $_POST["estado2"];
     $list3->graficoEspecialidades();
 }
 
@@ -300,6 +312,7 @@ if (isset($_POST["dash3"])) {
     $list4->espec3 = $_POST["especialidad3"];
     $list4->iafa3 = $_POST["iafa3"];
     $list4->doc3 = $_POST["doc3"];
+    $list4->estado3 = $_POST["estado3"];
     $list4->graficoIAFAS();
 }
 if (isset($_POST["searchTerm2"])) {

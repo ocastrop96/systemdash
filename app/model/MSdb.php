@@ -7,9 +7,9 @@ class ConexionConsulta
             'sqlsrv:Server=192.168.32.123;Database=SIGH',
             'sa',
             'Heves.2016'
-            // 'sqlsrv:Server=OPTIMUS;Database=SIGH',
+            // 'sqlsrv:Server=KILLASISA;Database=SIGH',
             // 'sa',
-            // 'Sistemas2021+-+'
+            // '123456'
         );
         // $link->exec("set names utf8");
         return $link;
