@@ -11,8 +11,8 @@ class UsuariosControlador
     {
         if (isset($_POST["userQx"]) && isset($_POST["passQX"])) {
             if (
-                preg_match('/^[a-z0-9A-ZñÑáéíóúÁÉÍÓÚ]+$/', $_POST["userQx"])
-                // preg_match('/^[0-9]+$/', $_POST["passQX"])
+                preg_match('/^[a-z0-9A-ZñÑáéíóúÁÉÍÓÚ]+$/', $_POST["userQx"]) &&
+                preg_match('/^[0-9]+$/', $_POST["passQX"])
             ) {
 
                 $usuario = $_POST["userQx"];

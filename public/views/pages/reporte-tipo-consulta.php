@@ -45,32 +45,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
-                        <div class="form-group">
-                            <label>Pacientes:</label>
-                            <div class="input-group">
-                                <select class="form-control cmboAtendidos" name="cmboAtendidos" id="cmboAtendidos">
-                                    <option value="2">---------TODOS-----------</option>
-                                    <option value="1">ATENDIDOS</option>
-                                    <option value="0">NO ATENDIDOS</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
-                        <div class="form-group">
-                            <label>Pacientes:</label>
-                            <div class="input-group">
-                                <select class="form-control cmboAtendidos" name="cmboAtendidos" id="cmboAtendidos">
-                                    <option value="2">---------TODOS-----------</option>
-                                    <option value="1">ATENDIDOS</option>
-                                    <option value="0">NO ATENDIDOS</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
                         <div class="form-group">
                             <label>Tipo de Ingreso:</label>
@@ -97,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
                         <div class="form-group">
                             <label>IAFA:</label>
                             <div class="input-group">
@@ -113,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                         <div class="form-group">
                             <label>Ingrese DNI:</label>
                             <div class="input-group">
@@ -188,25 +164,25 @@
                         </div>
 
                         <div class="card-body table-responsive p-0" id="tabgraphDash32">
-                            <table class="table table-striped table-valign-middle" id="tabDetalleEspecialidad32">
-                                <thead>
-                                    <tr>
-                                        <th>Especialidad</th>
-                                        <th>N° Atenciones</th>
-                                        <th>Porcentaje</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="cuerpoTab32">
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>TOTAL</th>
-                                        <th id="totalTab32"></th>
-                                        <th id="totalTab3Porcen2"></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
+                                <table class="table table-striped table-valign-middle" id="tabDetalleEspecialidad32">
+                                    <thead>
+                                        <tr>
+                                            <th>Especialidad</th>
+                                            <th>N° Atenciones</th>
+                                            <th>Porcentaje</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoTab32">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>TOTAL</th>
+                                            <th id="totalTab32"></th>
+                                            <th id="totalTab3Porcen2"></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                     </div>
                 </div>
             </div>
